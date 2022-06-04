@@ -83,3 +83,5 @@ iOSInjectionProject/
 
 # End of https://www.toptal.com/developers/gitignore/api/swift
 
+# Custom
+GoogleService-Info.plist
