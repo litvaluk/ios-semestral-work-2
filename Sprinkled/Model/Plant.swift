@@ -8,7 +8,11 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct Plant: Codable, Identifiable {
+struct Plant: Codable, Identifiable, Comparable {
+	static func < (lhs: Plant, rhs: Plant) -> Bool {
+		return lhs.latinName < rhs.latinName
+	}
+	
 	@DocumentID var id: String?
 	let latinName: String
 	let commonName: String?

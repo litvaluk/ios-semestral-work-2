@@ -14,22 +14,20 @@ struct SearchView: View {
 	
 	var body: some View {
 		NavigationView {
-			Group {
-				if (!viewModel.isFetchedAtLeastOnce) {
-					ProgressView()
-						.scaleEffect(1.5)
-						.padding(100)
-				}
-				List(viewModel.filteredPlants) { plant in
-					PlantListItemView(plant: plant)
-				}
-				.searchable(text: $viewModel.searchText)
-				.refreshable {
-					try? await viewModel.fetchPlants()
-				}
-				.listStyle(.inset)
+			if (!viewModel.isFetchedAtLeastOnce) {
+				ProgressView()
+					.scaleEffect(1.5)
+					.padding(100)
 			}
-			.navigationTitle("Search")
+			List(viewModel.filteredPlants.sorted()) { plant in
+				PlantListItemView(plant: plant)
+			}
+			.searchable(text: $viewModel.searchText)
+			.refreshable {
+				try? await viewModel.fetchPlants()
+			}
+			.listStyle(.inset)
+			.navigationTitle("Search plants")
 			.navigationBarItems(trailing: Button (action: viewModel.signOut) {
 				Image(systemName: "rectangle.portrait.and.arrow.right")
 			})
