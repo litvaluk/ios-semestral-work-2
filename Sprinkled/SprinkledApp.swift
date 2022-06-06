@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseCore
+import FirebaseAuth
 
 class AppDelegate: NSObject, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -19,9 +20,35 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct SprinkledApp: App {
 	@UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 	
+	@State var currentUser: User?
+	
 	var body: some Scene {
 		WindowGroup {
-			SearchView(viewModel: SearchViewModel(dependencies: dependencies))
+			Group {
+				if (currentUser != nil) {
+					TabView {
+						HomeView().tabItem {
+							Image(systemName: "house")
+						}
+						MyPlantsView().tabItem {
+							Image(systemName: "leaf")
+						}
+						SearchView(viewModel: SearchViewModel(dependencies: dependencies)).tabItem {
+							Image(systemName: "magnifyingglass")
+						}
+						SettingsView().tabItem {
+							Image(systemName: "gearshape")
+						}
+					}
+				} else {
+					AuthView(viewModel: AuthViewModel())
+				}
+			}.onAppear {
+				self.currentUser = Auth.auth().currentUser
+				Auth.auth().addStateDidChangeListener { _, user in
+					self.currentUser = user
+				}
+			}
 		}
 	}
 }
