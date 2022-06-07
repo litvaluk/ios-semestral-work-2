@@ -9,8 +9,10 @@ final class AppDependency {
 	fileprivate init() { }
 	
 	lazy var plantRepository: PlantRepositoryType = PlantRepository()
+	lazy var plantEntryRepository: PlantEntryRepositoryType = PlantEntryRepository()
 }
 
 extension AppDependency: HasPlantRepository {}
+extension AppDependency: HasPlantEntryRepository {}
 
 let dependencies = AppDependency()

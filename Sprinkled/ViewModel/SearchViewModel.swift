@@ -38,11 +38,4 @@ final class SearchViewModel: ObservableObject {
 		isFetching = false
 		isFetchedAtLeastOnce = true
 	}
-	
-	func signOut() {
-		guard let _ = try? Auth.auth().signOut() else {
-			print("Sign Out not successful")
-			return
-		}
-	}
 }

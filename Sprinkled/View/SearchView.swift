@@ -28,9 +28,6 @@ struct SearchView: View {
 			}
 			.listStyle(.inset)
 			.navigationTitle("Search plants")
-			.navigationBarItems(trailing: Button (action: viewModel.signOut) {
-				Image(systemName: "rectangle.portrait.and.arrow.right")
-			})
 		}
 		.navigationViewStyle(.stack)
 		.onAppear {

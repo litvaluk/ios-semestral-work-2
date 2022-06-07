@@ -30,13 +30,13 @@ struct SprinkledApp: App {
 						HomeView().tabItem {
 							Image(systemName: "house")
 						}
-						MyPlantsView().tabItem {
+						MyPlantsView(viewModel: MyPlantsViewModel(dependencies: dependencies)).tabItem {
 							Image(systemName: "leaf")
 						}
 						SearchView(viewModel: SearchViewModel(dependencies: dependencies)).tabItem {
 							Image(systemName: "magnifyingglass")
 						}
-						SettingsView().tabItem {
+						SettingsView(viewModel: SettingsViewModel()).tabItem {
 							Image(systemName: "gearshape")
 						}
 					}
