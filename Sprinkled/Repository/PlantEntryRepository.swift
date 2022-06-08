@@ -16,6 +16,8 @@ protocol HasPlantEntryRepository {
 protocol PlantEntryRepositoryType {
 	func getAll() async throws -> [PlantEntry]
 	func getAllForUser() async throws -> [PlantEntry]
+	func getAllForUser(user: String) async throws -> [PlantEntry]
+	func getAllForTeam(team: String) async throws -> [PlantEntry]
 }
 
 final class PlantEntryRepository: PlantEntryRepositoryType {
@@ -37,5 +39,19 @@ final class PlantEntryRepository: PlantEntryRepositoryType {
 			}
 		}
 		return []
+	}
+	
+	func getAllForUser(user: String) async throws -> [PlantEntry] {
+		let snapshot = try await store.collection(path).whereField("user", isEqualTo: user).getDocuments()
+		return snapshot.documents.compactMap { document in
+			try? document.data(as: PlantEntry.self)
+		}
+	}
+	
+	func getAllForTeam(team: String) async throws -> [PlantEntry] {
+		let snapshot = try await store.collection(path).whereField("team", isEqualTo: team).getDocuments()
+		return snapshot.documents.compactMap { document in
+			try? document.data(as: PlantEntry.self)
+		}
 	}
 }

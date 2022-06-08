@@ -12,23 +12,13 @@ final class MyPlantsViewModel: ObservableObject {
 	private let dependencies: Dependencies
 	
 	@Published var selectedOption = 0
-	@Published var plantEntries: [PlantEntry] = []
-	@Published var isFetchingPlantEntries = true
-	@Published var isFetchedPlantEntriesAtLeastOnce = false
 	@Published var teams: [Team] = []
 	@Published var isFetchingTeams = true
 	@Published var isFetchedTeamsAtLeastOnce = false
+	@Published var isAddNewTeamSheetShown = false
 	
 	init(dependencies: Dependencies) {
 		self.dependencies = dependencies
-	}
-	
-	@MainActor
-	func fetchPlantEntries() async throws {
-		isFetchingPlantEntries = true
-		plantEntries = try await dependencies.plantEntryRepository.getAllForUser()
-		isFetchingPlantEntries = false
-		isFetchedPlantEntriesAtLeastOnce = true
 	}
 	
 	@MainActor
