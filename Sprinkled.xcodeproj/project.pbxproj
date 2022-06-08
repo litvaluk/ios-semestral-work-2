@@ -30,6 +30,8 @@
 		8F986724284FD40C0091854B /* PlantEntryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F986723284FD40C0091854B /* PlantEntryRepository.swift */; };
 		8F986726284FD4560091854B /* PlantEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F986725284FD4560091854B /* PlantEntry.swift */; };
 		8FD02BDD284FFD4700098F3C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BDC284FFD4700098F3C /* SettingsViewModel.swift */; };
+		8FD02BDF28506FC300098F3C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BDE28506FC300098F3C /* Team.swift */; };
+		8FD02BE12850701B00098F3C /* TeamRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BE02850701B00098F3C /* TeamRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		8F986723284FD40C0091854B /* PlantEntryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantEntryRepository.swift; sourceTree = "<group>"; };
 		8F986725284FD4560091854B /* PlantEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantEntry.swift; sourceTree = "<group>"; };
 		8FD02BDC284FFD4700098F3C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		8FD02BDE28506FC300098F3C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		8FD02BE02850701B00098F3C /* TeamRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,7 @@
 			children = (
 				8F48D235284B954700ACB809 /* Plant.swift */,
 				8F986725284FD4560091854B /* PlantEntry.swift */,
+				8FD02BDE28506FC300098F3C /* Team.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 			children = (
 				8F48D233284B92C900ACB809 /* PlantRepository.swift */,
 				8F986723284FD40C0091854B /* PlantEntryRepository.swift */,
+				8FD02BE02850701B00098F3C /* TeamRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -243,11 +249,13 @@
 				8F48D236284B954700ACB809 /* Plant.swift in Sources */,
 				8F98671D284E20590091854B /* SettingsView.swift in Sources */,
 				8F48D216284B741F00ACB809 /* SprinkledApp.swift in Sources */,
+				8FD02BE12850701B00098F3C /* TeamRepository.swift in Sources */,
 				8F98671F284E20760091854B /* MyPlantsView.swift in Sources */,
 				8F986724284FD40C0091854B /* PlantEntryRepository.swift in Sources */,
 				8FD02BDD284FFD4700098F3C /* SettingsViewModel.swift in Sources */,
 				8F986719284E06F90091854B /* AuthViewModel.swift in Sources */,
 				8F986717284E04100091854B /* AuthView.swift in Sources */,
+				8FD02BDF28506FC300098F3C /* Team.swift in Sources */,
 				8F986722284FC3470091854B /* MyPlantsViewModel.swift in Sources */,
 				8F986726284FD4560091854B /* PlantEntry.swift in Sources */,
 				8F48D234284B92C900ACB809 /* PlantRepository.swift in Sources */,

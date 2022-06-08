@@ -8,10 +8,14 @@
 import SwiftUI
 import Kingfisher
 
+let gridItemSize = CGFloat(105)
+
 struct MyPlantsView: View {
 	@StateObject var viewModel: MyPlantsViewModel
 	
-	var gridItemLayout = [GridItem(.adaptive(minimum: 100, maximum: 120))]
+	var gridItemLayout = [
+		GridItem(.adaptive(minimum: gridItemSize, maximum: gridItemSize))
+	]
 	
 	var body: some View {
 		NavigationView {
@@ -23,27 +27,30 @@ struct MyPlantsView: View {
 				.pickerStyle(SegmentedPickerStyle())
 				.padding()
 				.navigationTitle("My plants")
-				switch (viewModel.selectedOption) {
-				case 0:
-					ScrollView {
-						LazyVGrid(columns: gridItemLayout, spacing: 5) {
+				ScrollView {
+					LazyVGrid(columns: gridItemLayout, spacing: 5) {
+						switch (viewModel.selectedOption) {
+						case 0:
 							ForEach(viewModel.plantEntries, id: \.self) { plantEntry in
 								PlantEntryGridItemView(plantEntry: plantEntry)
 							}
-						}
-						.padding(15)
-						.onAppear {
-							Task {
-								do {
-									try await viewModel.fetchPlantEntries()
-								} catch {
-									print("cannot fetch plants")
-								}
+						default:
+							ForEach(viewModel.teams, id: \.self) { team in
+								TeamGridItemView(team: team)
 							}
 						}
 					}
-				default:
-					Text("Team")
+					.padding(15)
+					.onAppear {
+						Task {
+							do {
+								try await viewModel.fetchPlantEntries()
+								try await viewModel.fetchTeams()
+							} catch {
+								print("cannot fetch")
+							}
+						}
+					}
 				}
 				Spacer()
 			}
@@ -58,7 +65,7 @@ struct PlantEntryGridItemView: View {
 	init(plantEntry: PlantEntry) {
 		self.plantEntry = plantEntry
 	}
-
+	
 	var body: some View {
 		NavigationLink(destination: Text("text")) {
 			ZStack (alignment: .bottomLeading) {
@@ -83,6 +90,29 @@ struct PlantEntryGridItemView: View {
 					.multilineTextAlignment(.leading)
 					.padding(6)
 			}
+			.cornerRadius(15)
+		}
+	}
+}
+
+struct TeamGridItemView: View {
+	let team: Team
+	
+	init(team: Team) {
+		self.team = team
+	}
+	
+	var body: some View {
+		NavigationLink(destination: Text("team")) {
+			ZStack (alignment: .bottomLeading) {
+				Rectangle().fill(.black)
+				Text(team.name)
+					.bold()
+					.foregroundColor(.white)
+					.multilineTextAlignment(.leading)
+					.padding(6)
+			}
+			.frame(width: gridItemSize, height: gridItemSize)
 			.cornerRadius(15)
 		}
 	}
