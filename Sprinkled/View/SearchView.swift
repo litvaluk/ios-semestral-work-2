@@ -20,7 +20,9 @@ struct SearchView: View {
 					.padding(100)
 			}
 			List(viewModel.filteredPlants.sorted()) { plant in
-				PlantListItemView(plant: plant)
+				NavigationLink(destination: PlantView(viewModel: PlantViewModel(plant: plant, dependencies: dependencies))) {
+					PlantListItemView(plant: plant)
+				}
 			}
 			.searchable(text: $viewModel.searchText)
 			.refreshable {

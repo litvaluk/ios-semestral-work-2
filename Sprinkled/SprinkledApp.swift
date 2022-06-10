@@ -43,7 +43,9 @@ struct SprinkledApp: App {
 				} else {
 					AuthView(viewModel: AuthViewModel())
 				}
-			}.onAppear {
+			}
+			.accentColor(.sprinkledGreen)
+			.onAppear {
 				self.currentUser = Auth.auth().currentUser
 				Auth.auth().addStateDidChangeListener { _, user in
 					self.currentUser = user
@@ -51,4 +53,9 @@ struct SprinkledApp: App {
 			}
 		}
 	}
+}
+
+extension Color {
+	static let sprinkledGreen = Color("SprinkledGreen")
+	static let sprinkledGray = Color("SprinkledGray")
 }

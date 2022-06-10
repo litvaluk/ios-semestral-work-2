@@ -58,10 +58,11 @@ struct AuthView: View {
 			
 			Button(action: viewModel.isSignInViewDisplayed ? viewModel.signInUser : viewModel.signUpUser) {
 				Text(viewModel.isSignInViewDisplayed ? "Sign In" : "Sign Up")
+					.foregroundColor(.white)
 			}
 			.padding()
 			.frame(maxWidth: .infinity)
-			.background(.thinMaterial)
+			.background(Color.sprinkledGreen)
 			.cornerRadius(10)
 			.disabled(viewModel.isProcessing || viewModel.isSignInViewDisplayed ? viewModel.signInEmail.isEmpty || viewModel.signInPassword.isEmpty : viewModel.signUpEmail.isEmpty || viewModel.signUpPassword.isEmpty || viewModel.signUpPasswordConfirmation.isEmpty)
 			HStack {

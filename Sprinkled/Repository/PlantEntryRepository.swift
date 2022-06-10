@@ -18,6 +18,7 @@ protocol PlantEntryRepositoryType {
 	func getAllForUser() async throws -> [PlantEntry]
 	func getAllForUser(user: String) async throws -> [PlantEntry]
 	func getAllForTeam(team: String) async throws -> [PlantEntry]
+	func create(plantEntry: PlantEntry) throws -> Void
 }
 
 final class PlantEntryRepository: PlantEntryRepositoryType {
@@ -53,5 +54,9 @@ final class PlantEntryRepository: PlantEntryRepositoryType {
 		return snapshot.documents.compactMap { document in
 			try? document.data(as: PlantEntry.self)
 		}
+	}
+	
+	func create(plantEntry: PlantEntry) throws {
+		_ = try store.collection(path).addDocument(from: plantEntry)
 	}
 }
