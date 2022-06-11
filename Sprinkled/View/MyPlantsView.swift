@@ -22,11 +22,15 @@ struct MyPlantsView: View {
 				}
 				Section(header: TeamHeaderView(viewModel: viewModel)) {
 					ForEach(viewModel.teams) { team in
-						NavigationLink(destination: PlantEntryListView(viewModel: PlantEntryListViewModel(ownerType: .team, owner: team.id!, navigationTitle: team.name, dependencies: dependencies))) {
+						NavigationLink(destination: PlantEntryListView(viewModel: PlantEntryListViewModel(ownerType: .team, owner: team.id!, navigationTitle: team.name, dependencies: dependencies)).navigationBarItems(trailing: NavigationLink(destination: TeamSettingsView(viewModel: TeamSettingsViewModel(team: team, dependencies: dependencies))) {
+							Image(systemName: "gearshape.fill")
+						})
+						) {
 							Text(team.name)
 						}
 					}
 				}
+				.textCase(.none)
 			}
 		}
 		.onAppear {
@@ -46,7 +50,7 @@ struct TeamHeaderView: View {
 	
 	var body: some View {
 		HStack {
-			Text("Team")
+			Text("TEAM")
 				.font(.headline)
 			if (viewModel.isFetchingTeams) {
 				ProgressView()
@@ -59,7 +63,26 @@ struct TeamHeaderView: View {
 				Image(systemName: "plus")
 			}
 			.sheet(isPresented: $viewModel.isAddNewTeamSheetShown) {
-				Text("Add new team")
+				VStack (spacing: 15) {
+					Text("Add new team")
+						.font(.title)
+						.foregroundColor(.primary)
+					TextField("Name", text: $viewModel.newTeamName)
+						.padding()
+						.background(.thinMaterial)
+						.foregroundColor(.primary)
+						.cornerRadius(10)
+					Spacer()
+					Button(action: viewModel.addNewTeam) {
+						Text("Add")
+							.foregroundColor(.white)
+							.frame(maxWidth: .infinity)
+					}
+					.padding()
+					.background(Color.sprinkledGreen)
+					.cornerRadius(10)
+				}
+				.padding()
 			}
 		}
 	}

@@ -16,6 +16,7 @@ protocol HasTeamRepository {
 protocol TeamRepositoryType {
 	func getAll() async throws -> [Team]
 	func getAllForUser() async throws -> [Team]
+	func create(team: Team) throws -> Void
 }
 
 final class TeamRepository: TeamRepositoryType {
@@ -37,5 +38,9 @@ final class TeamRepository: TeamRepositoryType {
 			}
 		}
 		return []
+	}
+	
+	func create(team: Team) throws {
+		_ = try store.collection(path).addDocument(from: team)
 	}
 }

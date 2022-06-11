@@ -78,6 +78,6 @@ struct AuthView: View {
 
 struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthView(viewModel: AuthViewModel())
+        AuthView(viewModel: AuthViewModel(dependencies: dependencies))
     }
 }

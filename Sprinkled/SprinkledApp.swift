@@ -20,7 +20,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct SprinkledApp: App {
 	@UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 	
-	@State var currentUser: User?
+	@State var currentUser: FirebaseAuth.User?
 	
 	var body: some Scene {
 		WindowGroup {
@@ -41,7 +41,7 @@ struct SprinkledApp: App {
 						}
 					}
 				} else {
-					AuthView(viewModel: AuthViewModel())
+					AuthView(viewModel: AuthViewModel(dependencies: dependencies))
 				}
 			}
 			.accentColor(.sprinkledGreen)

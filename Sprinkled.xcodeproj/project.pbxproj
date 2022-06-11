@@ -36,6 +36,10 @@
 		8FD02BE7285107D200098F3C /* PlantEntryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BE6285107D200098F3C /* PlantEntryListViewModel.swift */; };
 		8FD02BE928535BCC00098F3C /* PlantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BE828535BCC00098F3C /* PlantView.swift */; };
 		8FD02BEB28535E8000098F3C /* PlantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BEA28535E8000098F3C /* PlantViewModel.swift */; };
+		8FD02BED2854884600098F3C /* TeamSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BEC2854884500098F3C /* TeamSettingsView.swift */; };
+		8FD02BEF2854887400098F3C /* TeamSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BEE2854887400098F3C /* TeamSettingsViewModel.swift */; };
+		8FD02BF128548B7F00098F3C /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BF028548B7F00098F3C /* UserRepository.swift */; };
+		8FD02BF328548BD900098F3C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BF228548BD900098F3C /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +69,10 @@
 		8FD02BE6285107D200098F3C /* PlantEntryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantEntryListViewModel.swift; sourceTree = "<group>"; };
 		8FD02BE828535BCC00098F3C /* PlantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantView.swift; sourceTree = "<group>"; };
 		8FD02BEA28535E8000098F3C /* PlantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantViewModel.swift; sourceTree = "<group>"; };
+		8FD02BEC2854884500098F3C /* TeamSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsView.swift; sourceTree = "<group>"; };
+		8FD02BEE2854887400098F3C /* TeamSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsViewModel.swift; sourceTree = "<group>"; };
+		8FD02BF028548B7F00098F3C /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		8FD02BF228548BD900098F3C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +142,7 @@
 				8FD02BE22851016600098F3C /* MyPlantsView.swift */,
 				8FD02BE4285107B900098F3C /* PlantEntryListView.swift */,
 				8FD02BE828535BCC00098F3C /* PlantView.swift */,
+				8FD02BEC2854884500098F3C /* TeamSettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -144,6 +153,7 @@
 				8F48D235284B954700ACB809 /* Plant.swift */,
 				8F986725284FD4560091854B /* PlantEntry.swift */,
 				8FD02BDE28506FC300098F3C /* Team.swift */,
+				8FD02BF228548BD900098F3C /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -157,6 +167,7 @@
 				8FD02BDC284FFD4700098F3C /* SettingsViewModel.swift */,
 				8FD02BE6285107D200098F3C /* PlantEntryListViewModel.swift */,
 				8FD02BEA28535E8000098F3C /* PlantViewModel.swift */,
+				8FD02BEE2854887400098F3C /* TeamSettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -167,6 +178,7 @@
 				8F48D233284B92C900ACB809 /* PlantRepository.swift */,
 				8F986723284FD40C0091854B /* PlantEntryRepository.swift */,
 				8FD02BE02850701B00098F3C /* TeamRepository.swift */,
+				8FD02BF028548B7F00098F3C /* UserRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -254,8 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FD02BED2854884600098F3C /* TeamSettingsView.swift in Sources */,
 				8F98671B284E20380091854B /* HomeView.swift in Sources */,
 				8FD02BEB28535E8000098F3C /* PlantViewModel.swift in Sources */,
+				8FD02BF328548BD900098F3C /* User.swift in Sources */,
 				8F48D238284B9B9700ACB809 /* SearchViewModel.swift in Sources */,
 				8FD02BE5285107B900098F3C /* PlantEntryListView.swift in Sources */,
 				8F48D22B284B8E9800ACB809 /* AppDependency.swift in Sources */,
@@ -267,6 +281,8 @@
 				8F48D216284B741F00ACB809 /* SprinkledApp.swift in Sources */,
 				8FD02BE12850701B00098F3C /* TeamRepository.swift in Sources */,
 				8F986724284FD40C0091854B /* PlantEntryRepository.swift in Sources */,
+				8FD02BF128548B7F00098F3C /* UserRepository.swift in Sources */,
+				8FD02BEF2854887400098F3C /* TeamSettingsViewModel.swift in Sources */,
 				8FD02BDD284FFD4700098F3C /* SettingsViewModel.swift in Sources */,
 				8F986719284E06F90091854B /* AuthViewModel.swift in Sources */,
 				8F986717284E04100091854B /* AuthView.swift in Sources */,

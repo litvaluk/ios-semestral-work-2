@@ -9,6 +9,9 @@ import Foundation
 import FirebaseAuth
 
 final class AuthViewModel: ObservableObject {
+	typealias Dependencies = HasUserRepository
+	private let dependencies: Dependencies
+	
 	@Published var isSignInViewDisplayed = true
 	@Published var isProcessing = false
 	@Published var errorMessage = ""
@@ -17,6 +20,10 @@ final class AuthViewModel: ObservableObject {
 	@Published var signUpEmail = ""
 	@Published var signUpPassword = ""
 	@Published var signUpPasswordConfirmation = ""
+	
+	init(dependencies: Dependencies) {
+		self.dependencies = dependencies
+	}
 	
 	func signInUser() {
 		errorMessage = ""
@@ -53,6 +60,7 @@ final class AuthViewModel: ObservableObject {
 			
 			let authUserEmail = authResult?.user.email ?? ""
 			print("User signed up \(authUserEmail) ")
+			try? self.dependencies.userRepository.create(user: User(id: authResult!.user.uid, email: authUserEmail))
 			self.isProcessing = false
 		}
 	}

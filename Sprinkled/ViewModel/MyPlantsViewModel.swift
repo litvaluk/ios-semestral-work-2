@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 final class MyPlantsViewModel: ObservableObject {
 	typealias Dependencies = HasPlantEntryRepository & HasTeamRepository
@@ -16,6 +17,8 @@ final class MyPlantsViewModel: ObservableObject {
 	@Published var isFetchingTeams = true
 	@Published var isFetchedTeamsAtLeastOnce = false
 	@Published var isAddNewTeamSheetShown = false
+	@Published var newTeamName = ""
+	@Published var isAddingTeam = false
 	
 	init(dependencies: Dependencies) {
 		self.dependencies = dependencies
@@ -27,5 +30,20 @@ final class MyPlantsViewModel: ObservableObject {
 		teams = try await dependencies.teamRepository.getAllForUser()
 		isFetchingTeams = false
 		isFetchedTeamsAtLeastOnce = true
+	}
+	
+	func addNewTeam() {
+		isAddingTeam = true
+		let newTeam = Team(name: newTeamName, createdBy: Auth.auth().currentUser!.uid, createdAt: .now, users: [Auth.auth().currentUser!.uid])
+		try? dependencies.teamRepository.create(team: newTeam)
+		isAddingTeam = false
+		isAddNewTeamSheetShown = false
+		Task {
+			do {
+				try await fetchTeams()
+			} catch {
+				print("cannot fetch teams")
+			}
+		}
 	}
 }
