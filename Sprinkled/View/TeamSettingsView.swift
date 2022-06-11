@@ -18,6 +18,31 @@ struct TeamSettingsView: View {
 			}
 		}
 		.navigationTitle("Members")
+		.navigationBarItems(trailing: NavigationLink {
+				List(viewModel.filteredAllUsers.sorted()) { user in
+					Button {
+						Task {
+							do {
+								try await viewModel.addUserToTeam(user: user)
+								try await viewModel.fetchUsers()
+								viewModel.isShowingAlert.toggle()
+							} catch {
+								print("cannot add user")
+							}
+						}
+					} label: {
+						Text(user.email)
+							.foregroundColor(.primary)
+					}
+					.alert(isPresented: $viewModel.isShowingAlert) {
+						Alert(title: Text("New member added!"), message: Text(user.email), dismissButton: .default(Text("Ok")))
+					}
+				}
+				.searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always))
+				.navigationTitle("Add new member")
+		} label: {
+			Image(systemName: "plus")
+		})
 		.onAppear {
 			Task {
 				do {

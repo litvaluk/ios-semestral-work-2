@@ -17,6 +17,7 @@ protocol TeamRepositoryType {
 	func getAll() async throws -> [Team]
 	func getAllForUser() async throws -> [Team]
 	func create(team: Team) throws -> Void
+	func update(team: Team) async throws -> Void
 }
 
 final class TeamRepository: TeamRepositoryType {
@@ -42,5 +43,9 @@ final class TeamRepository: TeamRepositoryType {
 	
 	func create(team: Team) throws {
 		_ = try store.collection(path).addDocument(from: team)
+	}
+	
+	func update(team: Team) async throws {
+		_ = try store.collection(path).document(team.id!).setData(from: team)
 	}
 }

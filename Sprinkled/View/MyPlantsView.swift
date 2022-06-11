@@ -32,6 +32,28 @@ struct MyPlantsView: View {
 				}
 				.textCase(.none)
 			}
+			.sheet(isPresented: $viewModel.isAddNewTeamSheetShown) {
+				VStack (spacing: 15) {
+					Text("Add new team")
+						.font(.title)
+						.foregroundColor(.primary)
+					TextField("Name", text: $viewModel.newTeamName)
+						.padding()
+						.background(.thinMaterial)
+						.foregroundColor(.primary)
+						.cornerRadius(10)
+					Spacer()
+					Button(action: viewModel.addNewTeam) {
+						Text("Add")
+							.foregroundColor(.white)
+							.frame(maxWidth: .infinity)
+					}
+					.padding()
+					.background(Color.sprinkledGreen)
+					.cornerRadius(10)
+				}
+				.padding()
+			}
 		}
 		.onAppear {
 			Task {
@@ -61,28 +83,6 @@ struct TeamHeaderView: View {
 				viewModel.isAddNewTeamSheetShown.toggle()
 			} label: {
 				Image(systemName: "plus")
-			}
-			.sheet(isPresented: $viewModel.isAddNewTeamSheetShown) {
-				VStack (spacing: 15) {
-					Text("Add new team")
-						.font(.title)
-						.foregroundColor(.primary)
-					TextField("Name", text: $viewModel.newTeamName)
-						.padding()
-						.background(.thinMaterial)
-						.foregroundColor(.primary)
-						.cornerRadius(10)
-					Spacer()
-					Button(action: viewModel.addNewTeam) {
-						Text("Add")
-							.foregroundColor(.white)
-							.frame(maxWidth: .infinity)
-					}
-					.padding()
-					.background(Color.sprinkledGreen)
-					.cornerRadius(10)
-				}
-				.padding()
 			}
 		}
 	}
