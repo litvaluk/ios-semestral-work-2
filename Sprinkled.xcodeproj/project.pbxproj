@@ -40,6 +40,8 @@
 		8FD02BEF2854887400098F3C /* TeamSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BEE2854887400098F3C /* TeamSettingsViewModel.swift */; };
 		8FD02BF128548B7F00098F3C /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BF028548B7F00098F3C /* UserRepository.swift */; };
 		8FD02BF328548BD900098F3C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BF228548BD900098F3C /* User.swift */; };
+		8FD02BF52855FF1600098F3C /* PlantEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BF42855FF1500098F3C /* PlantEntryView.swift */; };
+		8FD02BF72855FF3E00098F3C /* PlantEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BF62855FF3E00098F3C /* PlantEntryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +75,8 @@
 		8FD02BEE2854887400098F3C /* TeamSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsViewModel.swift; sourceTree = "<group>"; };
 		8FD02BF028548B7F00098F3C /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		8FD02BF228548BD900098F3C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8FD02BF42855FF1500098F3C /* PlantEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantEntryView.swift; sourceTree = "<group>"; };
+		8FD02BF62855FF3E00098F3C /* PlantEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantEntryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,7 @@
 				8FD02BE4285107B900098F3C /* PlantEntryListView.swift */,
 				8FD02BE828535BCC00098F3C /* PlantView.swift */,
 				8FD02BEC2854884500098F3C /* TeamSettingsView.swift */,
+				8FD02BF42855FF1500098F3C /* PlantEntryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 				8FD02BE6285107D200098F3C /* PlantEntryListViewModel.swift */,
 				8FD02BEA28535E8000098F3C /* PlantViewModel.swift */,
 				8FD02BEE2854887400098F3C /* TeamSettingsViewModel.swift */,
+				8FD02BF62855FF3E00098F3C /* PlantEntryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -271,6 +277,7 @@
 				8FD02BEB28535E8000098F3C /* PlantViewModel.swift in Sources */,
 				8FD02BF328548BD900098F3C /* User.swift in Sources */,
 				8F48D238284B9B9700ACB809 /* SearchViewModel.swift in Sources */,
+				8FD02BF72855FF3E00098F3C /* PlantEntryViewModel.swift in Sources */,
 				8FD02BE5285107B900098F3C /* PlantEntryListView.swift in Sources */,
 				8F48D22B284B8E9800ACB809 /* AppDependency.swift in Sources */,
 				8F48D218284B741F00ACB809 /* SearchView.swift in Sources */,
@@ -285,6 +292,7 @@
 				8FD02BEF2854887400098F3C /* TeamSettingsViewModel.swift in Sources */,
 				8FD02BDD284FFD4700098F3C /* SettingsViewModel.swift in Sources */,
 				8F986719284E06F90091854B /* AuthViewModel.swift in Sources */,
+				8FD02BF52855FF1600098F3C /* PlantEntryView.swift in Sources */,
 				8F986717284E04100091854B /* AuthView.swift in Sources */,
 				8FD02BDF28506FC300098F3C /* Team.swift in Sources */,
 				8F986722284FC3470091854B /* MyPlantsViewModel.swift in Sources */,

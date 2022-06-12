@@ -6,7 +6,6 @@
 //
 
 import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 protocol HasPlantRepository {
 	var plantRepository: PlantRepositoryType { get }
@@ -14,6 +13,7 @@ protocol HasPlantRepository {
 
 protocol PlantRepositoryType {
 	func getAll() async throws -> [Plant]
+	func get(id: String) async throws -> Plant
 }
 
 final class PlantRepository: PlantRepositoryType {
@@ -25,5 +25,9 @@ final class PlantRepository: PlantRepositoryType {
 		return snapshot.documents.compactMap { document in
 			try? document.data(as: Plant.self)
 		}
+	}
+	
+	func get(id: String) async throws -> Plant {
+		return try await store.collection(path).document(id).getDocument(as: Plant.self)
 	}
 }

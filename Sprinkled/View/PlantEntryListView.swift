@@ -45,7 +45,7 @@ struct PlantEntryGridItemView: View {
 	}
 	
 	var body: some View {
-		NavigationLink(destination: Text("text")) {
+		NavigationLink(destination: PlantEntryView(viewModel: PlantEntryViewModel(dependencies: dependencies, plantEntry: plantEntry))) {
 			ZStack (alignment: .bottomLeading) {
 				GeometryReader { gr in
 					if (plantEntry.images.isEmpty) {

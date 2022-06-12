@@ -19,6 +19,7 @@ protocol PlantEntryRepositoryType {
 	func getAllForUser(user: String) async throws -> [PlantEntry]
 	func getAllForTeam(team: String) async throws -> [PlantEntry]
 	func create(plantEntry: PlantEntry) throws -> Void
+	func delete(id: String) -> Void
 }
 
 final class PlantEntryRepository: PlantEntryRepositoryType {
@@ -58,5 +59,9 @@ final class PlantEntryRepository: PlantEntryRepositoryType {
 	
 	func create(plantEntry: PlantEntry) throws {
 		_ = try store.collection(path).addDocument(from: plantEntry)
+	}
+	
+	func delete(id: String) {
+		store.collection(path).document(id).delete()
 	}
 }

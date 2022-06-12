@@ -78,7 +78,7 @@ struct PlantView: View {
 											Text(team.name).tag(team.id)
 										}
 									}
-									.foregroundColor(.sprinkledGreen)
+									.accentColor(.sprinkledGreen)
 								}
 								.padding([.leading, .trailing])
 								.padding([.top, .bottom], 5)
