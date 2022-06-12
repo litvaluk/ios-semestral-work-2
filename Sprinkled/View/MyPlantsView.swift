@@ -22,7 +22,7 @@ struct MyPlantsView: View {
 				}
 				Section(header: TeamHeaderView(viewModel: viewModel)) {
 					ForEach(viewModel.teams) { team in
-						NavigationLink(destination: PlantEntryListView(viewModel: PlantEntryListViewModel(ownerType: .team, owner: team.id!, navigationTitle: team.name, dependencies: dependencies)).navigationBarItems(trailing: NavigationLink(destination: TeamSettingsView(viewModel: TeamSettingsViewModel(team: team, dependencies: dependencies))) {
+						NavigationLink(destination: PlantEntryListView(viewModel: PlantEntryListViewModel(ownerType: .team, owner: team.id!, navigationTitle: team.name, dependencies: dependencies)).navigationBarItems(trailing: NavigationLink(destination: TeamSettingsView(viewModel: TeamSettingsViewModel(team: team, dependencies: dependencies), myPlantsViewModel: viewModel)) {
 							Image(systemName: "gearshape.fill")
 						})
 						) {
@@ -55,6 +55,7 @@ struct MyPlantsView: View {
 				.padding()
 			}
 		}
+		.navigationViewStyle(.stack)
 		.onAppear {
 			Task {
 				do {

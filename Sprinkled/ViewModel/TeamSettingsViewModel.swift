@@ -32,6 +32,7 @@ final class TeamSettingsViewModel: ObservableObject {
 	}
 	
 	var team: Team
+	var clickedUserEmail = ""
 	
 	init(team: Team, dependencies: Dependencies) {
 		self.team = team

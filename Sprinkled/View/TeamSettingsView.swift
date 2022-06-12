@@ -10,6 +10,7 @@ import FirebaseAuth
 
 struct TeamSettingsView: View {
 	@StateObject var viewModel: TeamSettingsViewModel
+	@StateObject var myPlantsViewModel: MyPlantsViewModel
 	
     var body: some View {
 		List {
@@ -21,10 +22,12 @@ struct TeamSettingsView: View {
 		.navigationBarItems(trailing: NavigationLink {
 				List(viewModel.filteredAllUsers.sorted()) { user in
 					Button {
+						viewModel.clickedUserEmail = user.email
 						Task {
 							do {
 								try await viewModel.addUserToTeam(user: user)
 								try await viewModel.fetchUsers()
+								try await myPlantsViewModel.fetchTeams()
 								viewModel.isShowingAlert.toggle()
 							} catch {
 								print("cannot add user")
@@ -34,12 +37,12 @@ struct TeamSettingsView: View {
 						Text(user.email)
 							.foregroundColor(.primary)
 					}
-					.alert(isPresented: $viewModel.isShowingAlert) {
-						Alert(title: Text("New member added!"), message: Text(user.email), dismissButton: .default(Text("Ok")))
-					}
 				}
 				.searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always))
 				.navigationTitle("Add new member")
+				.alert(isPresented: $viewModel.isShowingAlert) {
+					Alert(title: Text("New member added!"), message: Text(viewModel.clickedUserEmail), dismissButton: .default(Text("Ok")))
+				}
 		} label: {
 			Image(systemName: "plus")
 		})
@@ -58,6 +61,6 @@ struct TeamSettingsView: View {
 struct TeamSettingsView_Previews: PreviewProvider {
     static var previews: some View {
 		let team = Team(name: "Team", createdBy: "1234", createdAt: .now, users: ["1234"])
-        TeamSettingsView(viewModel: TeamSettingsViewModel(team: team, dependencies: dependencies))
+        TeamSettingsView(viewModel: TeamSettingsViewModel(team: team, dependencies: dependencies), myPlantsViewModel: MyPlantsViewModel(dependencies: dependencies))
     }
 }
