@@ -64,7 +64,27 @@ struct PlantView: View {
 								.padding()
 								.background(.thinMaterial)
 								.cornerRadius(10)
-								.textInputAutocapitalization(.never)
+							Picker("Owner", selection: $viewModel.ownerSelection) {
+								Text("Personal").tag(0)
+								Text("Team").tag(1)
+							}
+							.pickerStyle(.segmented)
+							if (viewModel.ownerSelection == 1) {
+								HStack {
+									Text("Selected team")
+									Spacer()
+									Picker("Team", selection: $viewModel.teamSelection) {
+										ForEach(viewModel.teams) { team in
+											Text(team.name).tag(team.id)
+										}
+									}
+									.foregroundColor(.sprinkledGreen)
+								}
+								.padding([.leading, .trailing])
+								.padding([.top, .bottom], 5)
+								.background(.thinMaterial)
+								.cornerRadius(10)
+							}
 							Spacer()
 							Button(action: viewModel.addNewPlantEntry) {
 								Text("Add")
@@ -76,6 +96,15 @@ struct PlantView: View {
 							.cornerRadius(10)
 						}
 						.padding()
+						.onAppear {
+							Task {
+								do {
+									try await viewModel.fetchTeams()
+								} catch {
+									print("cannot fetch teams")
+								}
+							}
+						}
 					}
 				}
 				.padding()
@@ -164,5 +193,3 @@ struct PlantView_Previews: PreviewProvider {
 		PlantView(viewModel: PlantViewModel(plant: plant, dependencies: dependencies))
 	}
 }
-
-// "http://www.tropicopia.com/house-plant//thumbnails/5790.jpg"

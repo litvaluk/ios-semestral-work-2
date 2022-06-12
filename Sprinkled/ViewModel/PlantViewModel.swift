@@ -15,6 +15,10 @@ final class PlantViewModel: ObservableObject {
 	@Published var isAddNewPlantEntrySheetShown = false
 	@Published var newPlantEntryName = ""
 	@Published var isAddingPlantEntry = false
+	@Published var ownerSelection = 0
+	@Published var teamSelection: String?
+	@Published var teams: [Team] = []
+	@Published var isFetchingTeams = false
 	
 	let plant: Plant
 	
@@ -25,10 +29,22 @@ final class PlantViewModel: ObservableObject {
 
 	func addNewPlantEntry() {
 		isAddingPlantEntry = true
-		let newPlantEntry = PlantEntry(name: newPlantEntryName, plant: plant.id, user: Auth.auth().currentUser!.uid, team: nil, createdBy: Auth.auth().currentUser!.uid, createdAt: .now, images: [plant.pictureUrl!])
+		var newPlantEntry: PlantEntry
+		if (ownerSelection == 0) {
+			newPlantEntry = PlantEntry(name: newPlantEntryName, plant: plant.id, user: Auth.auth().currentUser!.uid, team: nil, createdBy: Auth.auth().currentUser!.uid, createdAt: .now, images: [plant.pictureUrl!])
+		} else {
+			newPlantEntry = PlantEntry(name: newPlantEntryName, plant: plant.id, user: nil, team: teamSelection, createdBy: Auth.auth().currentUser!.uid, createdAt: .now, images: [plant.pictureUrl!])
+		}
 		try? dependencies.plantEntryRepository.create(plantEntry: newPlantEntry)
 		isAddingPlantEntry = false
 		isAddNewPlantEntrySheetShown = false
+	}
+	
+	@MainActor
+	func fetchTeams() async throws {
+		isFetchingTeams = true
+		teams = try await dependencies.teamRepository.getAllForUser()
+		isFetchingTeams = false
 	}
 	
 }
