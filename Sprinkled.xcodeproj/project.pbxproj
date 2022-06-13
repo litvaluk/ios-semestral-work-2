@@ -42,6 +42,8 @@
 		8FD02BF328548BD900098F3C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BF228548BD900098F3C /* User.swift */; };
 		8FD02BF52855FF1600098F3C /* PlantEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BF42855FF1500098F3C /* PlantEntryView.swift */; };
 		8FD02BF72855FF3E00098F3C /* PlantEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BF62855FF3E00098F3C /* PlantEntryViewModel.swift */; };
+		8FD02BF92857759C00098F3C /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BF82857759B00098F3C /* EventRepository.swift */; };
+		8FD02BFB285775F700098F3C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BFA285775F600098F3C /* Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +79,8 @@
 		8FD02BF228548BD900098F3C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8FD02BF42855FF1500098F3C /* PlantEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantEntryView.swift; sourceTree = "<group>"; };
 		8FD02BF62855FF3E00098F3C /* PlantEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantEntryViewModel.swift; sourceTree = "<group>"; };
+		8FD02BF82857759B00098F3C /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
+		8FD02BFA285775F600098F3C /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +163,7 @@
 				8F986725284FD4560091854B /* PlantEntry.swift */,
 				8FD02BDE28506FC300098F3C /* Team.swift */,
 				8FD02BF228548BD900098F3C /* User.swift */,
+				8FD02BFA285775F600098F3C /* Event.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 				8F986723284FD40C0091854B /* PlantEntryRepository.swift */,
 				8FD02BE02850701B00098F3C /* TeamRepository.swift */,
 				8FD02BF028548B7F00098F3C /* UserRepository.swift */,
+				8FD02BF82857759B00098F3C /* EventRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -290,6 +296,8 @@
 				8F986724284FD40C0091854B /* PlantEntryRepository.swift in Sources */,
 				8FD02BF128548B7F00098F3C /* UserRepository.swift in Sources */,
 				8FD02BEF2854887400098F3C /* TeamSettingsViewModel.swift in Sources */,
+				8FD02BF92857759C00098F3C /* EventRepository.swift in Sources */,
+				8FD02BFB285775F700098F3C /* Event.swift in Sources */,
 				8FD02BDD284FFD4700098F3C /* SettingsViewModel.swift in Sources */,
 				8F986719284E06F90091854B /* AuthViewModel.swift in Sources */,
 				8FD02BF52855FF1600098F3C /* PlantEntryView.swift in Sources */,
