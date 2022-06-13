@@ -14,6 +14,7 @@ protocol HasEventRepository {
 
 protocol EventRepositoryType {
 	func getAll() async throws -> [Event]
+	func getAllForPlantEntry(plantEntry: String) async throws -> [Event]
 	func create(event: Event) throws -> Void
 }
 
@@ -23,6 +24,13 @@ final class EventRepository: EventRepositoryType {
 	
 	func getAll() async throws -> [Event] {
 		let snapshot = try await store.collection(path).getDocuments()
+		return snapshot.documents.compactMap { document in
+			try? document.data(as: Event.self)
+		}
+	}
+	
+	func getAllForPlantEntry(plantEntry: String) async throws -> [Event] {
+		let snapshot = try await store.collection(path).whereField("plantEntry", isEqualTo: plantEntry).getDocuments()
 		return snapshot.documents.compactMap { document in
 			try? document.data(as: Event.self)
 		}

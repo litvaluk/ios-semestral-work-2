@@ -8,13 +8,19 @@
 import Foundation
 
 final class PlantEntryViewModel: ObservableObject {
-	typealias Dependencies = HasPlantRepository & HasPlantEntryRepository
+	typealias Dependencies = HasPlantRepository & HasPlantEntryRepository & HasEventRepository & HasUserRepository
 	private let dependencies: Dependencies
 	
-	@Published var isFetching = false
+	@Published var isFetchingPlant = false
+	@Published var isFetchingEvents = false
+	@Published var isFetchingUsers = false
+	@Published var events: [Event] = []
+	@Published var users: [User] = []
+	@Published var pickerSelection = 0
 	
 	let plantEntry: PlantEntry
 	var plant: Plant?
+	
 	
 	init(dependencies: Dependencies, plantEntry: PlantEntry) {
 		self.dependencies = dependencies
@@ -23,12 +29,26 @@ final class PlantEntryViewModel: ObservableObject {
 	
 	@MainActor
 	func fetchPlant() async throws {
-		isFetching = true
+		isFetchingPlant = true
 		plant = try await dependencies.plantRepository.get(id: plantEntry.plant!)
-		isFetching = false
+		isFetchingPlant = false
 	}
 	
 	func deletePlantEntry(id: String) {
 		dependencies.plantEntryRepository.delete(id: id)
+	}
+	
+	@MainActor
+	func fetchEvents() async throws {
+		isFetchingEvents = true
+		events = try await dependencies.eventRepository.getAllForPlantEntry(plantEntry: plantEntry.id!)
+		isFetchingEvents = false
+	}
+	
+	@MainActor
+	func fetchUsers() async throws {
+		isFetchingUsers = true
+		users = try await dependencies.userRepository.getAll()
+		isFetchingUsers = false
 	}
 }

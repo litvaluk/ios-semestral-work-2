@@ -21,7 +21,7 @@ struct Event: Codable, Identifiable, Comparable, Hashable {
 }
 
 extension Event {
-	static let previewSingle = Event(id: "1", type: "water", createdBy: "1", createdAt: .now, plantEntry: "1")
+	static let previewSingle = Event(id: "1", type: "Water", createdBy: "1", createdAt: .now, plantEntry: "1")
 	static let previewMultiple = [
 		previewSingle,
 		previewSingle,
