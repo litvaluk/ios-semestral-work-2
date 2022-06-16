@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 final class PlantEntryViewModel: ObservableObject {
 	typealias Dependencies = HasPlantRepository & HasPlantEntryRepository & HasEventRepository & HasUserRepository
@@ -17,7 +18,9 @@ final class PlantEntryViewModel: ObservableObject {
 	@Published var events: [Event] = []
 	@Published var users: [User] = []
 	@Published var pickerSelection = 0
-	
+	@Published var isAddEventSheetOpen = false
+	@Published var eventPickerSelection = "Water"
+	@Published var eventDatePickerSelection = Date.now
 	let plantEntry: PlantEntry
 	var plant: Plant?
 	
@@ -50,5 +53,11 @@ final class PlantEntryViewModel: ObservableObject {
 		isFetchingUsers = true
 		users = try await dependencies.userRepository.getAll()
 		isFetchingUsers = false
+	}
+	
+	@MainActor
+	func addNewEvent() async throws {
+		try dependencies.eventRepository.create(event: Event(type: eventPickerSelection, createdBy: Auth.auth().currentUser!.uid, createdAt: eventDatePickerSelection, plantEntry: plantEntry.id!))
+		isAddEventSheetOpen = false
 	}
 }

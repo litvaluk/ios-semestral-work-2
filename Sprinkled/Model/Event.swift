@@ -10,7 +10,7 @@ import FirebaseFirestoreSwift
 
 struct Event: Codable, Identifiable, Comparable, Hashable {
 	static func < (lhs: Event, rhs: Event) -> Bool {
-		return lhs.createdAt < rhs.createdAt
+		return lhs.createdAt > rhs.createdAt
 	}
 	
 	@DocumentID var id: String?

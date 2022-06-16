@@ -41,6 +41,16 @@ struct PlantEntryView: View {
 			}
 			.cornerRadius(15)
 			HStack {
+				Button {
+					viewModel.isAddEventSheetOpen.toggle()
+				} label: {
+					ZStack {
+						RoundedRectangle(cornerRadius: 15)
+							.foregroundColor(.sprinkledGreen)
+						Text("Add event")
+							.foregroundColor(.white)
+					}
+				}
 				NavigationLink(destination: PlantView(viewModel: PlantViewModel(plant: viewModel.plant!, dependencies: dependencies))) {
 					ZStack {
 						RoundedRectangle(cornerRadius: 15)
@@ -49,7 +59,6 @@ struct PlantEntryView: View {
 							.foregroundColor(.primary)
 					}
 				}
-				Spacer()
 				Button {
 					presentationMode.wrappedValue.dismiss()
 					viewModel.deletePlantEntry(id: viewModel.plantEntry.id!)
@@ -70,13 +79,22 @@ struct PlantEntryView: View {
 				Text("Reminders").tag(1)
 			}
 			.pickerStyle(.segmented)
-			.padding()
+			.padding([.bottom, .leading, .trailing])
 			if (viewModel.pickerSelection == 0) {
 				List {
 					ForEach(viewModel.events.sorted()) { event in
 						EventListItemView(event: event, user: viewModel.users.first {
 							$0.id! == event.createdBy
 						} ?? User(id: "1", email: "unknown"))
+					}
+				}
+				.refreshable {
+					Task {
+						do {
+							try await viewModel.fetchEvents()
+						} catch {
+							print("cannot fetch events")
+						}
 					}
 				}
 				.listStyle(.plain)
@@ -89,6 +107,45 @@ struct PlantEntryView: View {
 				.listStyle(.plain)
 				.padding([.trailing])
 			}
+		}
+		.sheet(isPresented: $viewModel.isAddEventSheetOpen) {
+			VStack (spacing: 15) {
+				Text("Add new event")
+					.font(.title)
+					.foregroundColor(.primary)
+				HStack {
+					Text("Selected event")
+					Spacer()
+					Picker("Event Picker", selection: $viewModel.eventPickerSelection) {
+						Text("Water").tag("Water")
+						Text("Mist").tag("Mist")
+						Text("Fertilize").tag("Fertilize")
+						Text("Repot").tag("Repot")
+						Text("Prune").tag("Prune")
+					}
+					.accentColor(.sprinkledGreen)
+				}
+				DatePicker("Event date", selection: $viewModel.eventDatePickerSelection, displayedComponents: [.date, .hourAndMinute])
+				Spacer()
+				Button {
+					Task {
+						do {
+							try await viewModel.addNewEvent()
+							try await viewModel.fetchEvents()
+						} catch {
+							print("cannot add event / fetch events")
+						}
+					}
+				} label: {
+					Text("Add")
+						.foregroundColor(.white)
+						.frame(maxWidth: .infinity)
+				}
+				.padding()
+				.background(Color.sprinkledGreen)
+				.cornerRadius(10)
+			}
+			.padding()
 		}
 		.ignoresSafeArea(.all, edges: [.top])
 		.onAppear {
