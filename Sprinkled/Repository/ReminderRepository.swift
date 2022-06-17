@@ -14,6 +14,7 @@ protocol HasReminderRepository {
 
 protocol ReminderRepositoryType {
 	func getAllActiveForUser(userId: String) async throws -> [Reminder]
+	func getAllActiveForUserAndPlantEntry(userId: String, plantEntryId: String) async throws -> [Reminder]
 	func create(reminder: Reminder) throws -> Void
 	func delete(id: String) -> Void
 }
@@ -24,6 +25,15 @@ final class ReminderRepository: ReminderRepositoryType {
 	
 	func getAllActiveForUser(userId: String) async throws -> [Reminder] {
 		let snapshot = try await store.collection(path).whereField("user", isEqualTo: userId).getDocuments()
+		return snapshot.documents.compactMap { document in
+			try? document.data(as: Reminder.self)
+		}.filter { reminder in
+			reminder.date > .now
+		}
+	}
+	
+	func getAllActiveForUserAndPlantEntry(userId: String, plantEntryId: String) async throws -> [Reminder] {
+		let snapshot = try await store.collection(path).whereField("user", isEqualTo: userId).whereField("plantEntry", isEqualTo: plantEntryId).getDocuments()
 		return snapshot.documents.compactMap { document in
 			try? document.data(as: Reminder.self)
 		}.filter { reminder in

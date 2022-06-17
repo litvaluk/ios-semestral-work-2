@@ -5,6 +5,7 @@
 //  Created by Lukáš Litvan on 04.06.2022.
 //
 
+import Foundation
 import SwiftUI
 import FirebaseCore
 import FirebaseAuth
@@ -27,7 +28,7 @@ struct SprinkledApp: App {
 			Group {
 				if (currentUser != nil) {
 					TabView {
-						HomeView().tabItem {
+						HomeView(viewModel: HomeViewModel(dependencies: dependencies)).tabItem {
 							Image(systemName: "house")
 						}
 						MyPlantsView(viewModel: MyPlantsViewModel(dependencies: dependencies)).tabItem {

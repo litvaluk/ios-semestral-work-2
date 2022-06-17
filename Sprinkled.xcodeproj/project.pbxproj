@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F24869E285CEE49001B0E17 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 8F24869D285CEE49001B0E17 /* Collections */; };
 		8F48D216284B741F00ACB809 /* SprinkledApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48D215284B741F00ACB809 /* SprinkledApp.swift */; };
 		8F48D218284B741F00ACB809 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48D217284B741F00ACB809 /* SearchView.swift */; };
 		8F48D21A284B742300ACB809 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F48D219284B742300ACB809 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		8F986722284FC3470091854B /* MyPlantsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F986721284FC3460091854B /* MyPlantsViewModel.swift */; };
 		8F986724284FD40C0091854B /* PlantEntryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F986723284FD40C0091854B /* PlantEntryRepository.swift */; };
 		8F986726284FD4560091854B /* PlantEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F986725284FD4560091854B /* PlantEntry.swift */; };
+		8FA777CD285CC3E8001FC236 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA777CC285CC3E8001FC236 /* HomeViewModel.swift */; };
 		8FD02BDD284FFD4700098F3C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BDC284FFD4700098F3C /* SettingsViewModel.swift */; };
 		8FD02BDF28506FC300098F3C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BDE28506FC300098F3C /* Team.swift */; };
 		8FD02BE12850701B00098F3C /* TeamRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BE02850701B00098F3C /* TeamRepository.swift */; };
@@ -68,6 +70,7 @@
 		8F986721284FC3460091854B /* MyPlantsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlantsViewModel.swift; sourceTree = "<group>"; };
 		8F986723284FD40C0091854B /* PlantEntryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantEntryRepository.swift; sourceTree = "<group>"; };
 		8F986725284FD4560091854B /* PlantEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantEntry.swift; sourceTree = "<group>"; };
+		8FA777CC285CC3E8001FC236 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		8FD02BDC284FFD4700098F3C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		8FD02BDE28506FC300098F3C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		8FD02BE02850701B00098F3C /* TeamRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRepository.swift; sourceTree = "<group>"; };
@@ -94,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F24869E285CEE49001B0E17 /* Collections in Frameworks */,
 				8F48D225284B8CBF00ACB809 /* FirebaseAnalytics in Frameworks */,
 				8F48D227284B8CBF00ACB809 /* FirebaseAuth in Frameworks */,
 				8F48D229284B8CBF00ACB809 /* FirebaseFirestore in Frameworks */,
@@ -187,6 +191,7 @@
 				8FD02BEA28535E8000098F3C /* PlantViewModel.swift */,
 				8FD02BEE2854887400098F3C /* TeamSettingsViewModel.swift */,
 				8FD02BF62855FF3E00098F3C /* PlantEntryViewModel.swift */,
+				8FA777CC285CC3E8001FC236 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 				8F48D228284B8CBF00ACB809 /* FirebaseFirestore */,
 				8F48D23A284BA5C500ACB809 /* FirebaseFirestoreSwift */,
 				8F48D23F284C9D7E00ACB809 /* Kingfisher */,
+				8F24869D285CEE49001B0E17 /* Collections */,
 			);
 			productName = Sprinkled;
 			productReference = 8F48D212284B741F00ACB809 /* Sprinkled.app */;
@@ -259,6 +265,7 @@
 				8F48D223284B8CBF00ACB809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				8F48D239284BA5C500ACB809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				8F48D23E284C9D7E00ACB809 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				8F24869C285CEE49001B0E17 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = 8F48D213284B741F00ACB809 /* Products */;
 			projectDirPath = "";
@@ -288,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FD02BED2854884600098F3C /* TeamSettingsView.swift in Sources */,
+				8FA777CD285CC3E8001FC236 /* HomeViewModel.swift in Sources */,
 				8F98671B284E20380091854B /* HomeView.swift in Sources */,
 				8FD02BEB28535E8000098F3C /* PlantViewModel.swift in Sources */,
 				8FD02BF328548BD900098F3C /* User.swift in Sources */,
@@ -523,6 +531,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8F24869C285CEE49001B0E17 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
 		8F48D223284B8CBF00ACB809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -550,6 +566,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8F24869D285CEE49001B0E17 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F24869C285CEE49001B0E17 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
 		8F48D224284B8CBF00ACB809 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8F48D223284B8CBF00ACB809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -64,7 +64,7 @@ final class PlantEntryViewModel: ObservableObject {
 	@MainActor
 	func fetchReminders() async throws {
 		isFetchingReminders = true
-		reminders = try await dependencies.reminderRepository.getAllActiveForUser(userId: Auth.auth().currentUser!.uid)
+		reminders = try await dependencies.reminderRepository.getAllActiveForUserAndPlantEntry(userId: Auth.auth().currentUser!.uid, plantEntryId: plantEntry.id!)
 		isFetchingReminders = false
 	}
 	
