@@ -32,7 +32,7 @@ final class ReminderRepository: ReminderRepositoryType {
 	}
 	
 	func create(reminder: Reminder) throws {
-		_ = try store.collection(path).addDocument(from: reminder)
+		_ = try store.collection(path).document(reminder.id!).setData(from: reminder)
 	}
 	
 	func delete(id: String) {

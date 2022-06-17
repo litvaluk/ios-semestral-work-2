@@ -103,6 +103,20 @@ struct PlantEntryView: View {
 				List {
 					ForEach(viewModel.reminders.sorted()) { reminder in
 						ReminderListItemView(reminder: reminder)
+							.swipeActions(allowsFullSwipe: false) {
+								Button(role: .destructive) {
+									viewModel.deleteReminder(id: reminder.id!)
+									Task {
+										do {
+											try await viewModel.fetchReminders()
+										} catch {
+											print("cannot fetch reminders")
+										}
+									}
+								} label: {
+									Label("Delete", systemImage: "trash.fill")
+								}
+							}
 					}
 				}
 				.refreshable {
@@ -234,7 +248,7 @@ struct EventListItemView: View {
 			ZStack {
 				RoundedRectangle(cornerRadius: 15)
 					.foregroundColor(.sprinkledPaleGreen)
-				Image(systemName: getIconSystemName(eventType: event.type))
+				getEventImage(eventType: event.type)
 					.resizable()
 					.scaledToFit()
 					.padding(10)
@@ -259,12 +273,22 @@ struct EventListItemView: View {
 		}
 	}
 	
-	func getIconSystemName(eventType: String) -> String {
+	func getEventImage(eventType: String) -> Image {
 		switch(eventType) {
 		case "Water":
-			return "drop.fill"
-		default:
-			return "leaf.fill"
+			return Image("Water")
+				.renderingMode(.template)
+		case "Mist":
+			return Image("Mist")
+				.renderingMode(.template)
+		case "Repot":
+			return Image("Repot")
+				.renderingMode(.template)
+		case "Fertilize":
+			return Image("Fertilize")
+				.renderingMode(.template)
+		default: // prune
+			return Image(systemName: "scissors")
 		}
 	}
 	
@@ -289,7 +313,7 @@ struct ReminderListItemView: View {
 			ZStack {
 				RoundedRectangle(cornerRadius: 15)
 					.foregroundColor(.sprinkledPaleGreen)
-				Image(systemName: getIconSystemName(eventType: reminder.event))
+				getEventImage(eventType: reminder.event)
 					.resizable()
 					.scaledToFit()
 					.padding(10)
@@ -311,12 +335,22 @@ struct ReminderListItemView: View {
 		}
 	}
 	
-	private func getIconSystemName(eventType: String) -> String {
+	func getEventImage(eventType: String) -> Image {
 		switch(eventType) {
 		case "Water":
-			return "drop.fill"
-		default:
-			return "leaf.fill"
+			return Image("Water")
+				.renderingMode(.template)
+		case "Mist":
+			return Image("Mist")
+				.renderingMode(.template)
+		case "Repot":
+			return Image("Repot")
+				.renderingMode(.template)
+		case "Fertilize":
+			return Image("Fertilize")
+				.renderingMode(.template)
+		default: // prune
+			return Image(systemName: "scissors")
 		}
 	}
 	

@@ -79,4 +79,8 @@ final class PlantEntryViewModel: ObservableObject {
 		try dependencies.notificationManager.addNotification(event: reminderEventPickerSelection, plantEntry: plantEntry, date: reminderDatePickerSelection)
 		isAddReminderSheetOpen = false
 	}
+	
+	func deleteReminder(id: String) {
+		dependencies.notificationManager.removeNotification(id: id)
+	}
 }
