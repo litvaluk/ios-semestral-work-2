@@ -9,12 +9,29 @@ import FirebaseAuth
 import Foundation
 
 final class SettingsViewModel: ObservableObject {
-	@Published var pushNotificationsEnabled = true
+	typealias Dependencies = HasNotificationManager & HasReminderRepository
+	private let dependencies: Dependencies
+	
+	@Published var reminderNotificationsToggleOn: Bool
+	
+	init(dependencies: Dependencies) {
+		self.dependencies = dependencies
+		reminderNotificationsToggleOn = self.dependencies.notificationManager.notificationsEnabled()
+	}
 	
 	func signOut() {
 		guard let _ = try? Auth.auth().signOut() else {
 			print("Sign Out not successful")
 			return
 		}
+	}
+	
+	func onReminderNotificationsToggleChange() {
+		if (reminderNotificationsToggleOn) {
+			dependencies.notificationManager.enableNotifications()
+		} else {
+			dependencies.notificationManager.disableNotifications()
+		}
+		dependencies.notificationManager.requestPermission()
 	}
 }

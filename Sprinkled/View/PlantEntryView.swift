@@ -101,11 +101,34 @@ struct PlantEntryView: View {
 				.padding([.trailing])
 			} else {
 				List {
-					Text("Reminder #1")
-					Text("Reminder #2")
+					ForEach(viewModel.reminders.sorted()) { reminder in
+						ReminderListItemView(reminder: reminder)
+					}
+				}
+				.refreshable {
+					Task {
+						do {
+							try await viewModel.fetchReminders()
+						} catch {
+							print("cannot fetch reminders")
+						}
+					}
 				}
 				.listStyle(.plain)
 				.padding([.trailing])
+				Spacer()
+				Button {
+					viewModel.isAddReminderSheetOpen.toggle()
+				} label: {
+					ZStack {
+						RoundedRectangle(cornerRadius: 15)
+							.foregroundColor(.sprinkledGreen)
+						Text("Add reminder")
+							.foregroundColor(.white)
+					}
+				}
+				.frame(height: 50)
+				.padding()
 			}
 		}
 		.sheet(isPresented: $viewModel.isAddEventSheetOpen) {
@@ -147,6 +170,45 @@ struct PlantEntryView: View {
 			}
 			.padding()
 		}
+		.sheet(isPresented: $viewModel.isAddReminderSheetOpen) {
+			VStack (spacing: 15) {
+				Text("Add new reminder")
+					.font(.title)
+					.foregroundColor(.primary)
+				HStack {
+					Text("Selected event")
+					Spacer()
+					Picker("Reminder event Picker", selection: $viewModel.reminderEventPickerSelection) {
+						Text("Water").tag("Water")
+						Text("Mist").tag("Mist")
+						Text("Fertilize").tag("Fertilize")
+						Text("Repot").tag("Repot")
+						Text("Prune").tag("Prune")
+					}
+					.accentColor(.sprinkledGreen)
+				}
+				DatePicker("Trigger date", selection: $viewModel.reminderDatePickerSelection, displayedComponents: [.date, .hourAndMinute])
+				Spacer()
+				Button {
+					Task {
+						do {
+							try await viewModel.addNewReminder()
+							try await viewModel.fetchReminders()
+						} catch {
+							print("cannot add/fetch reminders")
+						}
+					}
+				} label: {
+					Text("Add")
+						.foregroundColor(.white)
+						.frame(maxWidth: .infinity)
+				}
+				.padding()
+				.background(Color.sprinkledGreen)
+				.cornerRadius(10)
+			}
+			.padding()
+		}
 		.ignoresSafeArea(.all, edges: [.top])
 		.onAppear {
 			Task {
@@ -154,8 +216,9 @@ struct PlantEntryView: View {
 					try await viewModel.fetchEvents()
 					try await viewModel.fetchUsers()
 					try await viewModel.fetchPlant()
+					try await viewModel.fetchReminders()
 				} catch {
-					print("cannot fetch plant/events")
+					print("cannot fetch plant/events/users/reminders")
 				}
 			}
 		}
@@ -212,6 +275,58 @@ struct EventListItemView: View {
 	}
 	
 	func getTimeString(date: Date) -> String {
+		let df = DateFormatter()
+		df.dateFormat = "HH:mm"
+		return df.string(from: date)
+	}
+}
+
+struct ReminderListItemView: View {
+	let reminder: Reminder
+	
+	var body: some View {
+		HStack {
+			ZStack {
+				RoundedRectangle(cornerRadius: 15)
+					.foregroundColor(.sprinkledPaleGreen)
+				Image(systemName: getIconSystemName(eventType: reminder.event))
+					.resizable()
+					.scaledToFit()
+					.padding(10)
+					.foregroundColor(.sprinkledGreen)
+			}
+			.frame(width: 50, height: 50)
+			HStack {
+				VStack(alignment: .leading, spacing: 6) {
+					Text(reminder.event)
+				}
+				Spacer()
+				VStack(alignment: .trailing, spacing: 6) {
+					Text(getDateString(date: reminder.date))
+						.font(.subheadline)
+					Text(getTimeString(date: reminder.date))
+						.font(.caption)
+				}
+			}
+		}
+	}
+	
+	private func getIconSystemName(eventType: String) -> String {
+		switch(eventType) {
+		case "Water":
+			return "drop.fill"
+		default:
+			return "leaf.fill"
+		}
+	}
+	
+	private func getDateString(date: Date) -> String {
+		let df = DateFormatter()
+		df.dateFormat = "MMM d, y"
+		return df.string(from: date)
+	}
+	
+	private func getTimeString(date: Date) -> String {
 		let df = DateFormatter()
 		df.dateFormat = "HH:mm"
 		return df.string(from: date)

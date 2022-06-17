@@ -14,9 +14,12 @@ struct SettingsView: View {
     var body: some View {
 		NavigationView {
 		   Form {
-			   Section(header: Text("Notifications"), footer: Text("Check this to enable push notifications.")) {
-				   Toggle(isOn: $viewModel.pushNotificationsEnabled) {
-					   Text("Push notifications")
+			   Section(header: Text("Notifications"), footer: Text("Check this to enable reminder notifications.")) {
+				   Toggle(isOn: $viewModel.reminderNotificationsToggleOn) {
+					   Text("Reminder notifications")
+				   }
+				   .onChange(of: viewModel.reminderNotificationsToggleOn) { _ in
+					   viewModel.onReminderNotificationsToggleChange()
 				   }
 			   }.navigationTitle("Settings")
 			   Section {
@@ -36,6 +39,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(viewModel: SettingsViewModel())
+        SettingsView(viewModel: SettingsViewModel(dependencies: dependencies))
     }
 }

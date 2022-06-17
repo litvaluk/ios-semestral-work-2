@@ -44,6 +44,9 @@
 		8FD02BF72855FF3E00098F3C /* PlantEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BF62855FF3E00098F3C /* PlantEntryViewModel.swift */; };
 		8FD02BF92857759C00098F3C /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BF82857759B00098F3C /* EventRepository.swift */; };
 		8FD02BFB285775F700098F3C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BFA285775F600098F3C /* Event.swift */; };
+		8FD02BFD285C61C600098F3C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BFC285C61C100098F3C /* NotificationManager.swift */; };
+		8FD02BFF285C866700098F3C /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02BFE285C866600098F3C /* Reminder.swift */; };
+		8FD02C01285C86FC00098F3C /* ReminderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD02C00285C86FC00098F3C /* ReminderRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +84,9 @@
 		8FD02BF62855FF3E00098F3C /* PlantEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantEntryViewModel.swift; sourceTree = "<group>"; };
 		8FD02BF82857759B00098F3C /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
 		8FD02BFA285775F600098F3C /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		8FD02BFC285C61C100098F3C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		8FD02BFE285C866600098F3C /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		8FD02C00285C86FC00098F3C /* ReminderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +129,9 @@
 				8F48D22D284B8F9A00ACB809 /* Model */,
 				8F48D22E284B8FA100ACB809 /* ViewModel */,
 				8F48D22C284B8F9400ACB809 /* View */,
-				8F48D215284B741F00ACB809 /* SprinkledApp.swift */,
+				8FD02BFC285C61C100098F3C /* NotificationManager.swift */,
 				8F48D22A284B8E9800ACB809 /* AppDependency.swift */,
+				8F48D215284B741F00ACB809 /* SprinkledApp.swift */,
 				8F48D219284B742300ACB809 /* Assets.xcassets */,
 				8F48D23C284BAAA200ACB809 /* GoogleService-Info.plist */,
 				8F48D21B284B742300ACB809 /* Preview Content */,
@@ -164,6 +171,7 @@
 				8FD02BDE28506FC300098F3C /* Team.swift */,
 				8FD02BF228548BD900098F3C /* User.swift */,
 				8FD02BFA285775F600098F3C /* Event.swift */,
+				8FD02BFE285C866600098F3C /* Reminder.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -191,6 +199,7 @@
 				8FD02BE02850701B00098F3C /* TeamRepository.swift */,
 				8FD02BF028548B7F00098F3C /* UserRepository.swift */,
 				8FD02BF82857759B00098F3C /* EventRepository.swift */,
+				8FD02C00285C86FC00098F3C /* ReminderRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -287,9 +296,12 @@
 				8FD02BE5285107B900098F3C /* PlantEntryListView.swift in Sources */,
 				8F48D22B284B8E9800ACB809 /* AppDependency.swift in Sources */,
 				8F48D218284B741F00ACB809 /* SearchView.swift in Sources */,
+				8FD02C01285C86FC00098F3C /* ReminderRepository.swift in Sources */,
 				8FD02BE7285107D200098F3C /* PlantEntryListViewModel.swift in Sources */,
+				8FD02BFF285C866700098F3C /* Reminder.swift in Sources */,
 				8F48D236284B954700ACB809 /* Plant.swift in Sources */,
 				8F98671D284E20590091854B /* SettingsView.swift in Sources */,
+				8FD02BFD285C61C600098F3C /* NotificationManager.swift in Sources */,
 				8FD02BE928535BCC00098F3C /* PlantView.swift in Sources */,
 				8F48D216284B741F00ACB809 /* SprinkledApp.swift in Sources */,
 				8FD02BE12850701B00098F3C /* TeamRepository.swift in Sources */,

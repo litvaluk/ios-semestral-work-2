@@ -36,7 +36,7 @@ struct SprinkledApp: App {
 						SearchView(viewModel: SearchViewModel(dependencies: dependencies)).tabItem {
 							Image(systemName: "magnifyingglass")
 						}
-						SettingsView(viewModel: SettingsViewModel()).tabItem {
+						SettingsView(viewModel: SettingsViewModel(dependencies: dependencies)).tabItem {
 							Image(systemName: "gearshape")
 						}
 					}
@@ -47,8 +47,20 @@ struct SprinkledApp: App {
 			.accentColor(.sprinkledGreen)
 			.onAppear {
 				self.currentUser = Auth.auth().currentUser
+				dependencies.notificationManager.resetBadges()
 				Auth.auth().addStateDidChangeListener { _, user in
 					self.currentUser = user
+					Task {
+						if (user != nil) {
+							do {
+								try await dependencies.notificationManager.resumeNotifications()
+							} catch {
+								print("cannot resume notifications")
+							}
+						} else {
+							dependencies.notificationManager.pauseNotifications()
+						}
+					}
 				}
 			}
 		}
