@@ -19,6 +19,7 @@ final class PlantViewModel: ObservableObject {
 	@Published var teamSelection: String?
 	@Published var teams: [Team] = []
 	@Published var isFetchingTeams = false
+	@Published var error: Error?
 	
 	let plant: Plant
 	
@@ -35,15 +36,23 @@ final class PlantViewModel: ObservableObject {
 		} else {
 			newPlantEntry = PlantEntry(name: newPlantEntryName, plant: plant.id, user: nil, team: teamSelection, createdBy: Auth.auth().currentUser!.uid, createdAt: .now, images: [plant.pictureUrl!])
 		}
-		try? dependencies.plantEntryRepository.create(plantEntry: newPlantEntry)
+		do {
+			try dependencies.plantEntryRepository.create(plantEntry: newPlantEntry)
+		} catch {
+			self.error = Error.plantEntryAddFailed
+		}
 		isAddingPlantEntry = false
 		isAddNewPlantEntrySheetShown = false
 	}
 	
 	@MainActor
-	func fetchTeams() async throws {
+	func fetchTeams() async {
 		isFetchingTeams = true
-		teams = try await dependencies.teamRepository.getAllForUser()
+		do {
+			teams = try await dependencies.teamRepository.getAllForUser()
+		} catch {
+			self.error = Error.teamFetchFailed
+		}
 		isFetchingTeams = false
 	}
 	

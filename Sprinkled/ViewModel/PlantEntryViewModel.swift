@@ -26,6 +26,7 @@ final class PlantEntryViewModel: ObservableObject {
 	@Published var isAddReminderSheetOpen = false
 	@Published var reminderEventPickerSelection = "Water"
 	@Published var reminderDatePickerSelection = Date.now
+	@Published var error: Error?
 	
 	let plantEntry: PlantEntry
 	var plant: Plant?
@@ -37,9 +38,13 @@ final class PlantEntryViewModel: ObservableObject {
 	}
 	
 	@MainActor
-	func fetchPlant() async throws {
+	func fetchPlant() async {
 		isFetchingPlant = true
-		plant = try await dependencies.plantRepository.get(id: plantEntry.plant!)
+		do {
+			plant = try await dependencies.plantRepository.get(id: plantEntry.plant!)
+		} catch {
+			self.error = Error.plantFetchFailed
+		}
 		isFetchingPlant = false
 	}
 	
@@ -48,35 +53,55 @@ final class PlantEntryViewModel: ObservableObject {
 	}
 	
 	@MainActor
-	func fetchEvents() async throws {
+	func fetchEvents() async {
 		isFetchingEvents = true
-		events = try await dependencies.eventRepository.getAllForPlantEntry(plantEntry: plantEntry.id!)
+		do {
+			events = try await dependencies.eventRepository.getAllForPlantEntry(plantEntry: plantEntry.id!)
+		} catch {
+			self.error = Error.eventFetchFailed
+		}
 		isFetchingEvents = false
 	}
 	
 	@MainActor
-	func fetchUsers() async throws {
+	func fetchUsers() async {
 		isFetchingUsers = true
-		users = try await dependencies.userRepository.getAll()
+		do {
+			users = try await dependencies.userRepository.getAll()
+		} catch {
+			self.error = Error.userFetchFailed
+		}
 		isFetchingUsers = false
 	}
 	
 	@MainActor
-	func fetchReminders() async throws {
+	func fetchReminders() async {
 		isFetchingReminders = true
-		reminders = try await dependencies.reminderRepository.getAllActiveForUserAndPlantEntry(userId: Auth.auth().currentUser!.uid, plantEntryId: plantEntry.id!)
+		do {
+			reminders = try await dependencies.reminderRepository.getAllActiveForUserAndPlantEntry(userId: Auth.auth().currentUser!.uid, plantEntryId: plantEntry.id!)
+		} catch {
+			self.error = Error.reminderFetchFailed
+		}
 		isFetchingReminders = false
 	}
 	
 	@MainActor
-	func addNewEvent() async throws {
-		try dependencies.eventRepository.create(event: Event(type: eventPickerSelection, createdBy: Auth.auth().currentUser!.uid, createdAt: eventDatePickerSelection, plantEntry: plantEntry.id!))
+	func addNewEvent() async {
+		do {
+			try dependencies.eventRepository.create(event: Event(type: eventPickerSelection, createdBy: Auth.auth().currentUser!.uid, createdAt: eventDatePickerSelection, plantEntry: plantEntry.id!))
+		} catch {
+			self.error = Error.eventAddFailed
+		}
 		isAddEventSheetOpen = false
 	}
 	
 	@MainActor
-	func addNewReminder() async throws {
-		try dependencies.notificationManager.addNotification(event: reminderEventPickerSelection, plantEntry: plantEntry, date: reminderDatePickerSelection)
+	func addNewReminder() async {
+		do {
+			try dependencies.notificationManager.addNotification(event: reminderEventPickerSelection, plantEntry: plantEntry, date: reminderDatePickerSelection)
+		} catch {
+			self.error = Error.reminderAddFailed
+		}
 		isAddReminderSheetOpen = false
 	}
 	

@@ -98,11 +98,7 @@ struct PlantView: View {
 						.padding()
 						.onAppear {
 							Task {
-								do {
-									try await viewModel.fetchTeams()
-								} catch {
-									print("cannot fetch teams")
-								}
+								await viewModel.fetchTeams()
 							}
 						}
 					}
@@ -125,9 +121,8 @@ struct PlantView: View {
 			}
 		}
 		.ignoresSafeArea(.all, edges: [.top])
+		.errorAlert(error: $viewModel.error)
 	}
-	
-	
 }
 
 struct InfoBoxesView: View {

@@ -16,6 +16,7 @@ final class SearchViewModel: ObservableObject {
 	@Published var searchText = ""
 	@Published var isFetching = true
 	@Published var isFetchedAtLeastOnce = false
+	@Published var error: Error?
 	
 	var filteredPlants: [Plant] {
 		if searchText.isEmpty {
@@ -32,9 +33,13 @@ final class SearchViewModel: ObservableObject {
 	}
 	
 	@MainActor
-	func fetchPlants() async throws {
+	func fetchPlants() async {
 		isFetching = true
-		plants = try await dependencies.plantRepository.getAll()
+		do {
+			plants = try await dependencies.plantRepository.getAll()
+		} catch {
+			self.error = Error.plantFetchFailed
+		}
 		isFetching = false
 		isFetchedAtLeastOnce = true
 	}

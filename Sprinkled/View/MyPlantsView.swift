@@ -56,13 +56,10 @@ struct MyPlantsView: View {
 			}
 		}
 		.navigationViewStyle(.stack)
+		.errorAlert(error: $viewModel.error)
 		.onAppear {
 			Task {
-				do {
-					try await viewModel.fetchTeams()
-				} catch {
-					print("cannot fetch teams")
-				}
+				await viewModel.fetchTeams()
 			}
 		}
 	}

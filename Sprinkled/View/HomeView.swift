@@ -28,13 +28,7 @@ struct HomeView: View {
 						}
 					}
 					.refreshable {
-						Task {
-							do {
-								try await viewModel.fetchReminders()
-							} catch {
-								print("cannot fetch reminders")
-							}
-						}
+						await viewModel.fetchReminders()
 					}
 					.listStyle(.plain)
 				} else {
@@ -47,13 +41,10 @@ struct HomeView: View {
 		}
 		.accentColor(.sprinkledGreen)
 		.navigationViewStyle(.stack)
+		.errorAlert(error: $viewModel.error)
 		.onAppear {
 			Task {
-				do {
-					try await viewModel.fetchReminders()
-				} catch {
-					print("cannot fetch reminders")
-				}
+				await viewModel.fetchReminders()
 			}
 		}
 	}

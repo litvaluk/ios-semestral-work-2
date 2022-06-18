@@ -15,6 +15,7 @@ final class HomeViewModel: ObservableObject {
 	
 	@Published var reminderMap: OrderedDictionary<String, [Reminder]> = [:]
 	@Published var isFetchingReminders = false
+	@Published var error: Error?
 	
 	var uniquePlantEntries: [PlantEntry] = []
 	
@@ -23,14 +24,18 @@ final class HomeViewModel: ObservableObject {
 	}
 	
 	@MainActor
-	func fetchReminders() async throws {
+	func fetchReminders() async {
 		isFetchingReminders = true
-		let reminders = try await dependencies.reminderRepository.getAllActiveForUser(userId: Auth.auth().currentUser!.uid)
-		try await fetchUniquePlantEntries(reminders: reminders)
-		let df = DateFormatter()
-		df.dateFormat = "dd MMM"
-		reminderMap = OrderedDictionary.init(grouping: reminders) { reminder in
-			df.string(from: reminder.date)
+		do {
+			let reminders = try await dependencies.reminderRepository.getAllActiveForUser(userId: Auth.auth().currentUser!.uid)
+			try await fetchUniquePlantEntries(reminders: reminders)
+			let df = DateFormatter()
+			df.dateFormat = "dd MMM"
+			reminderMap = OrderedDictionary.init(grouping: reminders) { reminder in
+				df.string(from: reminder.date)
+			}
+		} catch {
+			self.error = Error.reminderFetchFailed
 		}
 		isFetchingReminders = false
 	}

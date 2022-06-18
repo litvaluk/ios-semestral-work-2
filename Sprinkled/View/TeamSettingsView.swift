@@ -24,14 +24,10 @@ struct TeamSettingsView: View {
 					Button {
 						viewModel.clickedUserEmail = user.email
 						Task {
-							do {
-								try await viewModel.addUserToTeam(user: user)
-								try await viewModel.fetchUsers()
-								try await myPlantsViewModel.fetchTeams()
-								viewModel.isShowingAlert.toggle()
-							} catch {
-								print("cannot add user")
-							}
+							await viewModel.addUserToTeam(user: user)
+							await viewModel.fetchUsers()
+							await myPlantsViewModel.fetchTeams()
+							viewModel.isShowingAlert.toggle()
 						}
 					} label: {
 						Text(user.email)
@@ -46,13 +42,10 @@ struct TeamSettingsView: View {
 		} label: {
 			Image(systemName: "plus")
 		})
+		.errorAlert(error: $viewModel.error)
 		.onAppear {
 			Task {
-				do {
-					try await viewModel.fetchUsers()
-				} catch {
-					print("cannot fetch users")
-				}
+				await viewModel.fetchUsers()
 			}
 		}
     }

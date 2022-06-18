@@ -19,15 +19,20 @@ final class MyPlantsViewModel: ObservableObject {
 	@Published var isAddNewTeamSheetShown = false
 	@Published var newTeamName = ""
 	@Published var isAddingTeam = false
+	@Published var error: Error?
 	
 	init(dependencies: Dependencies) {
 		self.dependencies = dependencies
 	}
 	
 	@MainActor
-	func fetchTeams() async throws {
+	func fetchTeams() async {
 		isFetchingTeams = true
-		teams = try await dependencies.teamRepository.getAllForUser()
+		do {
+			teams = try await dependencies.teamRepository.getAllForUser()
+		} catch {
+			self.error = Error.teamFetchFailed
+		}
 		isFetchingTeams = false
 		isFetchedTeamsAtLeastOnce = true
 	}
@@ -35,15 +40,13 @@ final class MyPlantsViewModel: ObservableObject {
 	func addNewTeam() {
 		isAddingTeam = true
 		let newTeam = Team(name: newTeamName, createdBy: Auth.auth().currentUser!.uid, createdAt: .now, users: [Auth.auth().currentUser!.uid])
-		try? dependencies.teamRepository.create(team: newTeam)
+		do {
+			try dependencies.teamRepository.create(team: newTeam)
+		} catch {
+			self.error = Error.teamCreationFailed
+		}
 		isAddingTeam = false
 		isAddNewTeamSheetShown = false
-		Task {
-			do {
-				try await fetchTeams()
-			} catch {
-				print("cannot fetch teams")
-			}
-		}
+		Task { await fetchTeams() }
 	}
 }

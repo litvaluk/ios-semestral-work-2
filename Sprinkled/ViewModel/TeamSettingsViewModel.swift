@@ -20,6 +20,7 @@ final class TeamSettingsViewModel: ObservableObject {
 	@Published var isFetchingUsers = false
 	@Published var searchText = ""
 	@Published var isShowingAlert = false
+	@Published var error: Error?
 	
 	var filteredAllUsers: [User] {
 		if searchText.isEmpty {
@@ -40,9 +41,13 @@ final class TeamSettingsViewModel: ObservableObject {
 	}
 	
 	@MainActor
-	func fetchUsers() async throws {
+	func fetchUsers() async {
 		isFetchingUsers = true
-		allUsers = try await dependencies.userRepository.getAll()
+		do {
+			allUsers = try await dependencies.userRepository.getAll()
+		} catch {
+			self.error = Error.userFetchFailed
+		}
 		users = allUsers.filter { user in
 			team.users.contains(user.id!)
 		}
@@ -50,11 +55,15 @@ final class TeamSettingsViewModel: ObservableObject {
 	}
 	
 	@MainActor
-	func addUserToTeam(user: User) async throws {
+	func addUserToTeam(user: User) async {
 		var newUsers = team.users
 		newUsers.append(user.id!)
 		let newTeam = Team(id: team.id, name: team.name, createdBy: team.createdBy, createdAt: team.createdAt, users: newUsers)
-		try await dependencies.teamRepository.update(team: newTeam)
+		do {
+			try await dependencies.teamRepository.update(team: newTeam)
+		} catch {
+			self.error = Error.userToTeamAddFailed
+		}
 		team = newTeam
 	}
 }

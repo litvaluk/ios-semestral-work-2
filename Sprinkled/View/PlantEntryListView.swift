@@ -23,13 +23,10 @@ struct PlantEntryListView: View {
 				}
 			}
 			.padding(15)
+			.errorAlert(error: $viewModel.error)
 			.onAppear {
 				Task {
-					do {
-						try await viewModel.fetchPlantEntries()
-					} catch {
-						print("cannot fetch")
-					}
+					await viewModel.fetchPlantEntries()
 				}
 			}
 		}

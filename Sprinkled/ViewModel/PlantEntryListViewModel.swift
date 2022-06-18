@@ -18,6 +18,7 @@ final class PlantEntryListViewModel: ObservableObject {
 	@Published var plantEntries: [PlantEntry] = []
 	@Published var isFetchingPlantEntries = true
 	@Published var isFetchedPlantEntriesAtLeastOnce = false
+	@Published var error: Error?
 	
 	private let ownerType: PlantEntryOwnerType
 	private let owner: String
@@ -31,13 +32,17 @@ final class PlantEntryListViewModel: ObservableObject {
 	}
 	
 	@MainActor
-	func fetchPlantEntries() async throws {
+	func fetchPlantEntries() async {
 		isFetchingPlantEntries = true
-		switch (ownerType) {
-		case .user:
-			plantEntries = try await dependencies.plantEntryRepository.getAllForUser(user: owner)
-		case .team:
-			plantEntries = try await dependencies.plantEntryRepository.getAllForTeam(team: owner)
+		do {
+			switch (ownerType) {
+			case .user:
+				plantEntries = try await dependencies.plantEntryRepository.getAllForUser(user: owner)
+			case .team:
+				plantEntries = try await dependencies.plantEntryRepository.getAllForTeam(team: owner)
+			}
+		} catch {
+			self.error = Error.plantEntryFetchFailed
 		}
 		isFetchingPlantEntries = false
 		isFetchedPlantEntriesAtLeastOnce = true

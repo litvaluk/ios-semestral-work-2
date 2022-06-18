@@ -26,19 +26,16 @@ struct SearchView: View {
 			}
 			.searchable(text: $viewModel.searchText)
 			.refreshable {
-				try? await viewModel.fetchPlants()
+				await viewModel.fetchPlants()
 			}
 			.listStyle(.inset)
 			.navigationTitle("Search plants")
 		}
 		.navigationViewStyle(.stack)
+		.errorAlert(error: $viewModel.error)
 		.onAppear {
 			Task {
-				do {
-					try await viewModel.fetchPlants()
-				} catch {
-					print("cannot fetch plants")
-				}
+				await viewModel.fetchPlants()
 			}
 		}
 	}

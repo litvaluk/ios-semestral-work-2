@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import SwiftUI
 import FirebaseCore
-import FirebaseAuth
+import SwiftUI
 
 class AppDelegate: NSObject, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -21,49 +20,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct SprinkledApp: App {
 	@UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 	
-	@State var currentUser: FirebaseAuth.User?
-	
 	var body: some Scene {
 		WindowGroup {
-			Group {
-				if (currentUser != nil) {
-					TabView {
-						HomeView(viewModel: HomeViewModel(dependencies: dependencies)).tabItem {
-							Image(systemName: "house")
-						}
-						MyPlantsView(viewModel: MyPlantsViewModel(dependencies: dependencies)).tabItem {
-							Image(systemName: "leaf")
-						}
-						SearchView(viewModel: SearchViewModel(dependencies: dependencies)).tabItem {
-							Image(systemName: "magnifyingglass")
-						}
-						SettingsView(viewModel: SettingsViewModel(dependencies: dependencies)).tabItem {
-							Image(systemName: "gearshape")
-						}
-					}
-				} else {
-					AuthView(viewModel: AuthViewModel(dependencies: dependencies))
-				}
-			}
-			.accentColor(.sprinkledGreen)
-			.onAppear {
-				self.currentUser = Auth.auth().currentUser
-				dependencies.notificationManager.resetBadges()
-				Auth.auth().addStateDidChangeListener { _, user in
-					self.currentUser = user
-					Task {
-						if (user != nil) {
-							do {
-								try await dependencies.notificationManager.resumeNotifications()
-							} catch {
-								print("cannot resume notifications")
-							}
-						} else {
-							dependencies.notificationManager.pauseNotifications()
-						}
-					}
-				}
-			}
+			SprinkledTabView(viewModel: SprinkledTabViewModel(dependencies: dependencies))
 		}
 	}
 }

@@ -90,11 +90,7 @@ struct PlantEntryView: View {
 				}
 				.refreshable {
 					Task {
-						do {
-							try await viewModel.fetchEvents()
-						} catch {
-							print("cannot fetch events")
-						}
+						await viewModel.fetchEvents()
 					}
 				}
 				.listStyle(.plain)
@@ -107,11 +103,7 @@ struct PlantEntryView: View {
 								Button(role: .destructive) {
 									viewModel.deleteReminder(id: reminder.id!)
 									Task {
-										do {
-											try await viewModel.fetchReminders()
-										} catch {
-											print("cannot fetch reminders")
-										}
+										await viewModel.fetchReminders()
 									}
 								} label: {
 									Label("Delete", systemImage: "trash.fill")
@@ -121,11 +113,7 @@ struct PlantEntryView: View {
 				}
 				.refreshable {
 					Task {
-						do {
-							try await viewModel.fetchReminders()
-						} catch {
-							print("cannot fetch reminders")
-						}
+						await viewModel.fetchReminders()
 					}
 				}
 				.listStyle(.plain)
@@ -166,12 +154,8 @@ struct PlantEntryView: View {
 				Spacer()
 				Button {
 					Task {
-						do {
-							try await viewModel.addNewEvent()
-							try await viewModel.fetchEvents()
-						} catch {
-							print("cannot add event / fetch events")
-						}
+						await viewModel.addNewEvent()
+						await viewModel.fetchEvents()
 					}
 				} label: {
 					Text("Add")
@@ -205,12 +189,8 @@ struct PlantEntryView: View {
 				Spacer()
 				Button {
 					Task {
-						do {
-							try await viewModel.addNewReminder()
-							try await viewModel.fetchReminders()
-						} catch {
-							print("cannot add/fetch reminders")
-						}
+						await viewModel.addNewReminder()
+						await viewModel.fetchReminders()
 					}
 				} label: {
 					Text("Add")
@@ -224,16 +204,13 @@ struct PlantEntryView: View {
 			.padding()
 		}
 		.ignoresSafeArea(.all, edges: [.top])
+		.errorAlert(error: $viewModel.error)
 		.onAppear {
 			Task {
-				do {
-					try await viewModel.fetchEvents()
-					try await viewModel.fetchUsers()
-					try await viewModel.fetchPlant()
-					try await viewModel.fetchReminders()
-				} catch {
-					print("cannot fetch plant/events/users/reminders")
-				}
+				await viewModel.fetchEvents()
+				await viewModel.fetchUsers()
+				await viewModel.fetchPlant()
+				await viewModel.fetchReminders()
 			}
 		}
 	}
