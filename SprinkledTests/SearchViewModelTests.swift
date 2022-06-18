@@ -9,9 +9,20 @@ import XCTest
 @testable import Sprinkled
 
 class SprinkledTests: XCTestCase {
+	private var viewModel: SearchViewModel!
+	
+	override func setUp() {
+		super.setUp()
+		viewModel = SearchViewModel(dependencies: dependencies)
+	}
+	
+	override func tearDown() {
+		super.tearDown()
+		viewModel = nil
+	}
+	
 	func testPlantSearchEmptyString() throws {
 		// given
-		let viewModel = SearchViewModel(dependencies: dependencies)
 		viewModel.searchText = ""
 		viewModel.plants = [
 			Plant(id: "1", latinName: "latin1", commonName: "common1", description: "desc1", pictureUrl: "url1", temperatureMin: 1, temperatureMax: 2, leafColor: "leafColor1", bloomColor: "bloomColor1", light: "light1", zoneMin: 1, zoneMax: 2),
@@ -30,7 +41,6 @@ class SprinkledTests: XCTestCase {
 	
 	func testPlantSearchNoMatch() throws {
 		// given
-		let viewModel = SearchViewModel(dependencies: dependencies)
 		viewModel.searchText = "nomatch"
 		viewModel.plants = [
 			Plant(id: "1", latinName: "latin1", commonName: "common1", description: "desc1", pictureUrl: "url1", temperatureMin: 1, temperatureMax: 2, leafColor: "leafColor1", bloomColor: "bloomColor1", light: "light1", zoneMin: 1, zoneMax: 2),
@@ -49,7 +59,6 @@ class SprinkledTests: XCTestCase {
 	
 	func testPlantSearchMatchOneLatin() throws {
 		// given
-		let viewModel = SearchViewModel(dependencies: dependencies)
 		viewModel.searchText = "in1"
 		viewModel.plants = [
 			Plant(id: "1", latinName: "latin1", commonName: "common1", description: "desc1", pictureUrl: "url1", temperatureMin: 1, temperatureMax: 2, leafColor: "leafColor1", bloomColor: "bloomColor1", light: "light1", zoneMin: 1, zoneMax: 2),
@@ -69,7 +78,6 @@ class SprinkledTests: XCTestCase {
 	
 	func testPlantSearchMatchOneCommon() throws {
 		// given
-		let viewModel = SearchViewModel(dependencies: dependencies)
 		viewModel.searchText = "on3"
 		viewModel.plants = [
 			Plant(id: "1", latinName: "latin1", commonName: "common1", description: "desc1", pictureUrl: "url1", temperatureMin: 1, temperatureMax: 2, leafColor: "leafColor1", bloomColor: "bloomColor1", light: "light1", zoneMin: 1, zoneMax: 2),
@@ -89,7 +97,6 @@ class SprinkledTests: XCTestCase {
 	
 	func testPlantSearchMatchAll() throws {
 		// given
-		let viewModel = SearchViewModel(dependencies: dependencies)
 		viewModel.searchText = "lat"
 		viewModel.plants = [
 			Plant(id: "1", latinName: "latin1", commonName: "common1", description: "desc1", pictureUrl: "url1", temperatureMin: 1, temperatureMax: 2, leafColor: "leafColor1", bloomColor: "bloomColor1", light: "light1", zoneMin: 1, zoneMax: 2),
