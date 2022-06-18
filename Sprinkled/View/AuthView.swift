@@ -12,11 +12,11 @@ struct AuthView: View {
 	
     var body: some View {
 		VStack (spacing: 15) {
-			Text("Sprinkled")
-				.bold()
+			Image("SprinkledLogoText")
+				.resizable()
+				.scaledToFit()
+				.frame(width: 250, height: 100)
 				.padding()
-				.font(.largeTitle)
-			
 			if (viewModel.isSignInViewDisplayed) {
 				TextField("Email", text: $viewModel.signInEmail)
 					.padding()
@@ -55,7 +55,6 @@ struct AuthView: View {
 					.padding()
 			}
 			Spacer()
-			
 			Button(action: viewModel.isSignInViewDisplayed ? viewModel.signInUser : viewModel.signUpUser) {
 				Text(viewModel.isSignInViewDisplayed ? "Sign In" : "Sign Up")
 					.foregroundColor(.white)

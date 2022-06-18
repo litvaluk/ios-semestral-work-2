@@ -35,9 +35,6 @@ final class AuthViewModel: ObservableObject {
 				self.errorMessage = error!.localizedDescription
 				return
 			}
-			
-			let authUserEmail = authResult?.user.email ?? ""
-			print("User signed in \(authUserEmail) ")
 			self.isProcessing = false
 		}
 	}

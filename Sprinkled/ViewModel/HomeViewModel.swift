@@ -26,8 +26,12 @@ final class HomeViewModel: ObservableObject {
 	@MainActor
 	func fetchReminders() async {
 		isFetchingReminders = true
+		guard let currentUser = Auth.auth().currentUser else {
+			isFetchingReminders = false
+			return
+		}
 		do {
-			let reminders = try await dependencies.reminderRepository.getAllActiveForUser(userId: Auth.auth().currentUser!.uid)
+			let reminders = try await dependencies.reminderRepository.getAllActiveForUser(userId: currentUser.uid)
 			try await fetchUniquePlantEntries(reminders: reminders)
 			let df = DateFormatter()
 			df.dateFormat = "dd MMM"
@@ -37,7 +41,6 @@ final class HomeViewModel: ObservableObject {
 		} catch {
 			self.error = Error.reminderFetchFailed
 		}
-		isFetchingReminders = false
 	}
 	
 	private func fetchUniquePlantEntries(reminders: [Reminder]) async throws {
@@ -47,7 +50,11 @@ final class HomeViewModel: ObservableObject {
 				uniquePlantEntryIds.append(reminder.plantEntry)
 			}
 		}
-		uniquePlantEntries = try await dependencies.plantEntryRepository.getMultiple(ids: uniquePlantEntryIds)
+		if (!uniquePlantEntryIds.isEmpty) {
+			uniquePlantEntries = try await dependencies.plantEntryRepository.getMultiple(ids: uniquePlantEntryIds)
+		} else {
+			uniquePlantEntries = []
+		}
 	}
 	
 }
