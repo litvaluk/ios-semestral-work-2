@@ -273,25 +273,6 @@ struct EventListItemView: View {
 		}
 	}
 	
-	func getEventImage(eventType: String) -> Image {
-		switch(eventType) {
-		case "Water":
-			return Image("Water")
-				.renderingMode(.template)
-		case "Mist":
-			return Image("Mist")
-				.renderingMode(.template)
-		case "Repot":
-			return Image("Repot")
-				.renderingMode(.template)
-		case "Fertilize":
-			return Image("Fertilize")
-				.renderingMode(.template)
-		default: // prune
-			return Image(systemName: "scissors")
-		}
-	}
-	
 	func getDateString(date: Date) -> String {
 		let df = DateFormatter()
 		df.dateFormat = "MMM d, y"
@@ -332,25 +313,6 @@ struct ReminderListItemView: View {
 						.font(.caption)
 				}
 			}
-		}
-	}
-	
-	func getEventImage(eventType: String) -> Image {
-		switch(eventType) {
-		case "Water":
-			return Image("Water")
-				.renderingMode(.template)
-		case "Mist":
-			return Image("Mist")
-				.renderingMode(.template)
-		case "Repot":
-			return Image("Repot")
-				.renderingMode(.template)
-		case "Fertilize":
-			return Image("Fertilize")
-				.renderingMode(.template)
-		default: // prune
-			return Image(systemName: "scissors")
 		}
 	}
 	

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8F24869E285CEE49001B0E17 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 8F24869D285CEE49001B0E17 /* Collections */; };
+		8F3BA5C3285DD26E00F6A03A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3BA5C2285DD26E00F6A03A /* Extensions.swift */; };
+		8F3BA5C5285DD37800F6A03A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3BA5C4285DD37800F6A03A /* Utils.swift */; };
 		8F48D216284B741F00ACB809 /* SprinkledApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48D215284B741F00ACB809 /* SprinkledApp.swift */; };
 		8F48D218284B741F00ACB809 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48D217284B741F00ACB809 /* SearchView.swift */; };
 		8F48D21A284B742300ACB809 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F48D219284B742300ACB809 /* Assets.xcassets */; };
@@ -52,6 +54,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F3BA5C2285DD26E00F6A03A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8F3BA5C4285DD37800F6A03A /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		8F48D212284B741F00ACB809 /* Sprinkled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sprinkled.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F48D215284B741F00ACB809 /* SprinkledApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprinkledApp.swift; sourceTree = "<group>"; };
 		8F48D217284B741F00ACB809 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 				8F48D22E284B8FA100ACB809 /* ViewModel */,
 				8F48D22C284B8F9400ACB809 /* View */,
 				8FD02BFC285C61C100098F3C /* NotificationManager.swift */,
+				8F3BA5C2285DD26E00F6A03A /* Extensions.swift */,
+				8F3BA5C4285DD37800F6A03A /* Utils.swift */,
 				8F48D22A284B8E9800ACB809 /* AppDependency.swift */,
 				8F48D215284B741F00ACB809 /* SprinkledApp.swift */,
 				8F48D219284B742300ACB809 /* Assets.xcassets */,
@@ -304,6 +310,7 @@
 				8FD02BE5285107B900098F3C /* PlantEntryListView.swift in Sources */,
 				8F48D22B284B8E9800ACB809 /* AppDependency.swift in Sources */,
 				8F48D218284B741F00ACB809 /* SearchView.swift in Sources */,
+				8F3BA5C5285DD37800F6A03A /* Utils.swift in Sources */,
 				8FD02C01285C86FC00098F3C /* ReminderRepository.swift in Sources */,
 				8FD02BE7285107D200098F3C /* PlantEntryListViewModel.swift in Sources */,
 				8FD02BFF285C866700098F3C /* Reminder.swift in Sources */,
@@ -325,6 +332,7 @@
 				8FD02BDF28506FC300098F3C /* Team.swift in Sources */,
 				8F986722284FC3470091854B /* MyPlantsViewModel.swift in Sources */,
 				8F986726284FD4560091854B /* PlantEntry.swift in Sources */,
+				8F3BA5C3285DD26E00F6A03A /* Extensions.swift in Sources */,
 				8F48D234284B92C900ACB809 /* PlantRepository.swift in Sources */,
 				8FD02BE32851016600098F3C /* MyPlantsView.swift in Sources */,
 			);

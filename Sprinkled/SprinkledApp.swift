@@ -67,9 +67,3 @@ struct SprinkledApp: App {
 		}
 	}
 }
-
-extension Color {
-	static let sprinkledGreen = Color("SprinkledGreen")
-	static let sprinkledPaleGreen = Color("SprinkledPaleGreen")
-	static let sprinkledGray = Color("SprinkledGray")
-}

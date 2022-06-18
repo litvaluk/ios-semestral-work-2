@@ -18,7 +18,9 @@ struct HomeView: View {
 						ForEach(Array(viewModel.reminderMap), id: \.key) { dayAndMonth, reminders in
 							Section {
 								ForEach(reminders) { reminder in
-									HomeReminderListItemView(reminder: reminder)
+									NavigationLink(destination: PlantEntryView(viewModel: PlantEntryViewModel(dependencies: dependencies, plantEntry: viewModel.uniquePlantEntries.first { $0.id! == reminder.plantEntry }!))) {
+										HomeReminderListItemView(reminder: reminder)
+									}
 								}
 							} header: {
 								Text(dayAndMonth)
@@ -43,6 +45,7 @@ struct HomeView: View {
 			}
 			.navigationTitle("Upcoming")
 		}
+		.accentColor(.sprinkledGreen)
 		.navigationViewStyle(.stack)
 		.onAppear {
 			Task {
@@ -86,25 +89,6 @@ struct HomeReminderListItemView: View {
 			}
 			Spacer()
 			Text(df.string(from: reminder.date))
-		}
-	}
-	
-	private func getEventImage(eventType: String) -> Image {
-		switch(eventType) {
-		case "Water":
-			return Image("Water")
-				.renderingMode(.template)
-		case "Mist":
-			return Image("Mist")
-				.renderingMode(.template)
-		case "Repot":
-			return Image("Repot")
-				.renderingMode(.template)
-		case "Fertilize":
-			return Image("Fertilize")
-				.renderingMode(.template)
-		default: // prune
-			return Image(systemName: "scissors")
 		}
 	}
 }

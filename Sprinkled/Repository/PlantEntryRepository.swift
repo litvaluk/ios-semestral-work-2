@@ -18,6 +18,7 @@ protocol PlantEntryRepositoryType {
 	func getAllForUser() async throws -> [PlantEntry]
 	func getAllForUser(user: String) async throws -> [PlantEntry]
 	func getAllForTeam(team: String) async throws -> [PlantEntry]
+	func getMultiple(ids: [String]) async throws -> [PlantEntry]
 	func create(plantEntry: PlantEntry) throws -> Void
 	func delete(id: String) -> Void
 }
@@ -52,6 +53,13 @@ final class PlantEntryRepository: PlantEntryRepositoryType {
 	
 	func getAllForTeam(team: String) async throws -> [PlantEntry] {
 		let snapshot = try await store.collection(path).whereField("team", isEqualTo: team).getDocuments()
+		return snapshot.documents.compactMap { document in
+			try? document.data(as: PlantEntry.self)
+		}
+	}
+	
+	func getMultiple(ids: [String]) async throws -> [PlantEntry] {
+		let snapshot = try await store.collection(path).whereField(FieldPath.documentID(), in: ids).getDocuments()
 		return snapshot.documents.compactMap { document in
 			try? document.data(as: PlantEntry.self)
 		}
