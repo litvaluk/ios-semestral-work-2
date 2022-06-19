@@ -21,6 +21,14 @@
 		8F3BA5ED285E2E5100F6A03A /* SprinkledWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8F3BA5E9285E2E4F00F6A03A /* SprinkledWidget.intentdefinition */; };
 		8F3BA5EE285E2E5200F6A03A /* SprinkledWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8F3BA5E9285E2E4F00F6A03A /* SprinkledWidget.intentdefinition */; };
 		8F3BA5F1285E2E5200F6A03A /* SprinkledWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8F3BA5E0285E2E4F00F6A03A /* SprinkledWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8F3BA5F6285EF32000F6A03A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F48D23C284BAAA200ACB809 /* GoogleService-Info.plist */; };
+		8F3BA5F7285EF32F00F6A03A /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48D235284B954700ACB809 /* Plant.swift */; };
+		8F3BA5F8285EF33400F6A03A /* PlantRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48D233284B92C900ACB809 /* PlantRepository.swift */; };
+		8F3BA5FD285EF43100F6A03A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8F3BA5FC285EF43100F6A03A /* FirebaseAnalytics */; };
+		8F3BA5FF285EF43100F6A03A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8F3BA5FE285EF43100F6A03A /* FirebaseFirestore */; };
+		8F3BA601285EF43100F6A03A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F3BA600285EF43100F6A03A /* FirebaseFirestoreSwift */; };
+		8F3BA603285EF43100F6A03A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8F3BA602285EF43100F6A03A /* Kingfisher */; };
+		8F3BA606285EF6CB00F6A03A /* WidgetDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3BA604285EF6C700F6A03A /* WidgetDependency.swift */; };
 		8F48D216284B741F00ACB809 /* SprinkledApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48D215284B741F00ACB809 /* SprinkledApp.swift */; };
 		8F48D218284B741F00ACB809 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48D217284B741F00ACB809 /* SearchView.swift */; };
 		8F48D21A284B742300ACB809 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F48D219284B742300ACB809 /* Assets.xcassets */; };
@@ -32,9 +40,9 @@
 		8F48D234284B92C900ACB809 /* PlantRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48D233284B92C900ACB809 /* PlantRepository.swift */; };
 		8F48D236284B954700ACB809 /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48D235284B954700ACB809 /* Plant.swift */; };
 		8F48D238284B9B9700ACB809 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48D237284B9B9700ACB809 /* SearchViewModel.swift */; };
-		8F48D23B284BA5C500ACB809 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F48D23A284BA5C500ACB809 /* FirebaseFirestoreSwift */; };
 		8F48D23D284BAAA200ACB809 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F48D23C284BAAA200ACB809 /* GoogleService-Info.plist */; };
 		8F48D240284C9D7E00ACB809 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8F48D23F284C9D7E00ACB809 /* Kingfisher */; };
+		8F4EB06C285EFB9800A9E65D /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F4EB06B285EFB9800A9E65D /* FirebaseFirestoreSwift */; };
 		8F986717284E04100091854B /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F986716284E04100091854B /* AuthView.swift */; };
 		8F986719284E06F90091854B /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F986718284E06F90091854B /* AuthViewModel.swift */; };
 		8F98671B284E20380091854B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F98671A284E20380091854B /* HomeView.swift */; };
@@ -110,6 +118,7 @@
 		8F3BA5E9285E2E4F00F6A03A /* SprinkledWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = SprinkledWidget.intentdefinition; sourceTree = "<group>"; };
 		8F3BA5EA285E2E5100F6A03A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F3BA5EC285E2E5100F6A03A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F3BA604285EF6C700F6A03A /* WidgetDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetDependency.swift; sourceTree = "<group>"; };
 		8F48D212284B741F00ACB809 /* Sprinkled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sprinkled.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F48D215284B741F00ACB809 /* SprinkledApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprinkledApp.swift; sourceTree = "<group>"; };
 		8F48D217284B741F00ACB809 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -162,8 +171,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F3BA603285EF43100F6A03A /* Kingfisher in Frameworks */,
+				8F3BA601285EF43100F6A03A /* FirebaseFirestoreSwift in Frameworks */,
 				8F3BA5E5285E2E4F00F6A03A /* SwiftUI.framework in Frameworks */,
+				8F3BA5FF285EF43100F6A03A /* FirebaseFirestore in Frameworks */,
 				8F3BA5E3285E2E4F00F6A03A /* WidgetKit.framework in Frameworks */,
+				8F3BA5FD285EF43100F6A03A /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,8 +188,8 @@
 				8F48D225284B8CBF00ACB809 /* FirebaseAnalytics in Frameworks */,
 				8F48D227284B8CBF00ACB809 /* FirebaseAuth in Frameworks */,
 				8F48D229284B8CBF00ACB809 /* FirebaseFirestore in Frameworks */,
-				8F48D23B284BA5C500ACB809 /* FirebaseFirestoreSwift in Frameworks */,
 				8F48D240284C9D7E00ACB809 /* Kingfisher in Frameworks */,
+				8F4EB06C285EFB9800A9E65D /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +216,7 @@
 		8F3BA5E6285E2E4F00F6A03A /* SprinkledWidget */ = {
 			isa = PBXGroup;
 			children = (
+				8F3BA604285EF6C700F6A03A /* WidgetDependency.swift */,
 				8F3BA5E7285E2E4F00F6A03A /* SprinkledWidget.swift */,
 				8F3BA5E9285E2E4F00F6A03A /* SprinkledWidget.intentdefinition */,
 				8F3BA5EA285E2E5100F6A03A /* Assets.xcassets */,
@@ -355,6 +369,12 @@
 			dependencies = (
 			);
 			name = SprinkledWidgetExtension;
+			packageProductDependencies = (
+				8F3BA5FC285EF43100F6A03A /* FirebaseAnalytics */,
+				8F3BA5FE285EF43100F6A03A /* FirebaseFirestore */,
+				8F3BA600285EF43100F6A03A /* FirebaseFirestoreSwift */,
+				8F3BA602285EF43100F6A03A /* Kingfisher */,
+			);
 			productName = SprinkledWidgetExtension;
 			productReference = 8F3BA5E0285E2E4F00F6A03A /* SprinkledWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -378,9 +398,9 @@
 				8F48D224284B8CBF00ACB809 /* FirebaseAnalytics */,
 				8F48D226284B8CBF00ACB809 /* FirebaseAuth */,
 				8F48D228284B8CBF00ACB809 /* FirebaseFirestore */,
-				8F48D23A284BA5C500ACB809 /* FirebaseFirestoreSwift */,
 				8F48D23F284C9D7E00ACB809 /* Kingfisher */,
 				8F24869D285CEE49001B0E17 /* Collections */,
+				8F4EB06B285EFB9800A9E65D /* FirebaseFirestoreSwift */,
 			);
 			productName = Sprinkled;
 			productReference = 8F48D212284B741F00ACB809 /* Sprinkled.app */;
@@ -419,7 +439,6 @@
 			mainGroup = 8F48D209284B741E00ACB809;
 			packageReferences = (
 				8F48D223284B8CBF00ACB809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				8F48D239284BA5C500ACB809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				8F48D23E284C9D7E00ACB809 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				8F24869C285CEE49001B0E17 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
@@ -447,6 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F3BA5EB285E2E5100F6A03A /* Assets.xcassets in Resources */,
+				8F3BA5F6285EF32000F6A03A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,7 +496,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F3BA5ED285E2E5100F6A03A /* SprinkledWidget.intentdefinition in Sources */,
+				8F3BA5F7285EF32F00F6A03A /* Plant.swift in Sources */,
 				8F3BA5E8285E2E4F00F6A03A /* SprinkledWidget.swift in Sources */,
+				8F3BA5F8285EF33400F6A03A /* PlantRepository.swift in Sources */,
+				8F3BA606285EF6CB00F6A03A /* WidgetDependency.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,7 +627,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -632,7 +655,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -765,7 +788,7 @@
 				INFOPLIST_FILE = Sprinkled/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -777,7 +800,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -796,7 +819,7 @@
 				INFOPLIST_FILE = Sprinkled/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -808,7 +831,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -870,14 +893,6 @@
 				minimumVersion = 9.0.0;
 			};
 		};
-		8F48D239284BA5C500ACB809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		8F48D23E284C9D7E00ACB809 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -894,6 +909,26 @@
 			package = 8F24869C285CEE49001B0E17 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = Collections;
 		};
+		8F3BA5FC285EF43100F6A03A /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F48D223284B8CBF00ACB809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		8F3BA5FE285EF43100F6A03A /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F48D223284B8CBF00ACB809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		8F3BA600285EF43100F6A03A /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F48D223284B8CBF00ACB809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		8F3BA602285EF43100F6A03A /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F48D23E284C9D7E00ACB809 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		8F48D224284B8CBF00ACB809 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8F48D223284B8CBF00ACB809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -909,15 +944,15 @@
 			package = 8F48D223284B8CBF00ACB809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
-		8F48D23A284BA5C500ACB809 /* FirebaseFirestoreSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F48D239284BA5C500ACB809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
-		};
 		8F48D23F284C9D7E00ACB809 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8F48D23E284C9D7E00ACB809 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		8F4EB06B285EFB9800A9E65D /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F48D223284B8CBF00ACB809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
