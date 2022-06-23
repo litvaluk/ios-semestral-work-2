@@ -1,5 +1,5 @@
 //
-//  SprinkledTests.swift
+//  SearchViewModelTests.swift
 //  SprinkledTests
 //
 //  Created by Lukáš Litvan on 18.06.2022.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import Sprinkled
 
-class SprinkledTests: XCTestCase {
+class SearchViewModelTests: XCTestCase {
 	private var viewModel: SearchViewModel!
 	
 	override func setUp() {

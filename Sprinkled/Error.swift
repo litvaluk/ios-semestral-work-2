@@ -42,7 +42,7 @@ enum Error: LocalizedError {
 		case .reminderAddFailed:
 			return "Failed to add new reminder..."
 		case .notificationsResumeFailed:
-			return "Failed to resume notifications"
+			return "Failed to resume notifications..."
 		}
 	}
 }
